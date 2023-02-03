@@ -6,10 +6,11 @@ import Shop from "./pages/Shop";
 import Item from "./pages/Item";
 import CheckOut from "./pages/CheckOut";
 import Navbar from "./components/Navbar";
+import Wishlist from "./pages/Wishlist";
 
 function App() {
   return (
-    <div className="">
+    <div className="app">
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop:id" element={<Item />} />
+          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/check-out" element={<CheckOut />} />
         </Routes>
       </BrowserRouter>

@@ -1,15 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
-
-  const onClick = () => {
-    const elem = document.activeElement;
-    if (elem) {
-      elem?.blur();
-    }
-  };
+  const [dropdown, setDropdown] = useState(false);
+  const [cartDropdown, setCartDropdown] = useState(false);
   const handleClick = (path) => {
     const elem = document.activeElement;
     if (elem) {
@@ -22,7 +17,7 @@ function Navbar() {
       <div className="flex-1">
         <a
           onClick={() => navigate("/")}
-          className="btn btn-ghost normal-case text-red-300 text-3xl"
+          className="btn btn-ghost normal-case text-accent text-3xl"
         >
           Daisies
         </a>
@@ -30,13 +25,16 @@ function Navbar() {
       <div>
         {/* WISHLIST */}
         <button
-          onClick={() => navigate("/check-out")}
+          onClick={() => navigate("/wishlist")}
           className="btn btn-ghost btn-circle text-accent text-lg"
         >
           <i className="fa-solid fa-heart" />
         </button>
         {/* USER  */}
-        <div className="dropdown dropdown-end ">
+        <div
+          onClick={() => setDropdown(!dropdown)}
+          className="dropdown dropdown-end "
+        >
           <label tabIndex={0} className="btn btn-ghost btn-circle text-accent">
             <div className="w-10 rounded-full flex items-center justify-center text-lg">
               <i className="fa-regular fa-user " />
@@ -44,7 +42,11 @@ function Navbar() {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className={
+              dropdown
+                ? "menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                : "hidden"
+            }
           >
             <li>
               <a
@@ -70,7 +72,10 @@ function Navbar() {
           </ul>
         </div>
         {/* SHOPPING CART */}
-        <div className="dropdown dropdown-end">
+        <div
+          className="dropdown dropdown-end"
+          onClick={() => setCartDropdown(!cartDropdown)}
+        >
           <label tabIndex={0} className="btn btn-ghost btn-circle text-accent">
             <div className="indicator ">
               <svg
@@ -93,14 +98,23 @@ function Navbar() {
           </label>
           <div
             tabIndex={0}
-            className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+            className={
+              cartDropdown
+                ? "mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+                : "hidden"
+            }
           >
             <div className="card-body">
               {/* CHANGE TO CHECKOUT ITEM LENGTH/PRICE  */}
               <span className="font-bold text-lg">0 Items</span>
               <span className="text-info">Subtotal: $0</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <button
+                  onClick={() => handleClick("/check-out")}
+                  className="btn btn-primary btn-block"
+                >
+                  View cart
+                </button>
               </div>
             </div>
           </div>
