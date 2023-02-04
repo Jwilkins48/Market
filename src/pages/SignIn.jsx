@@ -1,5 +1,6 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,21 +15,47 @@ function SignIn() {
       [e.target.id]: [e.target.value],
     }));
   };
+  const navigate = useNavigate();
+  const onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredentials.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      alert("No User");
+    }
+  };
   return (
-    <div className="flex h-[80vh] justify-center items-center">
-      <form className="w-full h-[22rem] rounded shadow-xl p-2 m-2 bg-secondary flex flex-col">
-        <header className="grid grid-cols-3 justify-center items-center text-center">
-          <h1 className="font-bold ">Sign in</h1>
-          <div className="w-10 text-center mx-auto divider"></div>
-          <h1>Sign up</h1>
+    <div className="bg-gray-300 flex h-[90vh] justify-center items-center">
+      <form
+        onSubmit={onsubmit}
+        className="w-[22rem] bg-primary h-[22rem] rounded-lg border border-base-300 shadow-xl p-3 m-2 bg- flex flex-col"
+      >
+        {/* SIGN IN / SIGN UP */}
+        <header className="grid grid-cols-3 my-2 justify-center items-center text-center signIn">
+          <h1 className="font-bold text-yellow-200 ml-2 text-xl">Sign in</h1>
+          <div className="w-20 text-primary text-center mx-auto divider">
+            <i className="fa-regular text-yellow-200 fa-heart" />
+          </div>
+          <Link className="text-xl text-secondary mr-2" to="/sign-up">
+            Sign up
+          </Link>
         </header>
+
         <div className="flex flex-col h-40 justify-around">
           <div>
-            <label className="font-bold mr-2 text-primary" htmlFor="email">
-              email
+            <label className="font-bold mr-2 text-secondary" htmlFor="email">
+              Email
             </label>
             <input
-              className="input bg-neutral h-10 w-full mt-1 text-secondary"
+              className="input text-gray-600 bg-base-100 border border-gray-300 h-10 w-full mt-1 text-secondary signIn"
               onChange={onChange}
               type="text"
               id="email"
@@ -36,12 +63,12 @@ function SignIn() {
             />
           </div>
           <div className="flex flex-col">
-            <label className="font-bold text-primary mr-2" htmlFor="password">
+            <label className="font-bold text-secondary mr-2" htmlFor="password">
               Password
             </label>
             <div className="relative">
               <input
-                className="input bg-neutral h-10 w-full mt-1 text-secondary"
+                className="input text-gray-600 bg-base-100 border border-gray-300 h-10 w-full mt-1 text-secondary"
                 onChange={onChange}
                 type={showPassword ? "text" : "password"}
                 id="password"
@@ -49,18 +76,17 @@ function SignIn() {
               />
               <p onClick={() => setShowPassword(!showPassword)}>
                 {!showPassword ? (
-                  <i className="fa-regular fa-eye absolute top-4 right-5 text-secondary" />
+                  <i className="fa-regular text-gray-600 fa-eye absolute top-4 right-5 text-secondary" />
                 ) : (
-                  <i className="fa-solid fa-eye-slash absolute top-4 right-5 text-secondary" />
+                  <i className="fa-solid text-gray-600 fa-eye-slash absolute top-4 right-5 text-secondary" />
                 )}
               </p>
             </div>
           </div>
         </div>
-        <button className="btn mt-10 btn-primary shadow-xl">Sign In</button>
-        <Link className="link-primary font-bold mt-3" to="/sign-up">
-          Sign Up
-        </Link>
+        <button className="btn text-gray-600 w-40 m-auto rounded-3xl btn-secondary shadow-xl">
+          Sign In
+        </button>
       </form>
     </div>
   );
