@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 function Navbar() {
+  const auth = getAuth();
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(false);
   const [cartDropdown, setCartDropdown] = useState(false);
+  //Close daisy dropdown tab on click
   const handleClick = (path) => {
     const elem = document.activeElement;
     if (elem) {
       elem?.blur();
     }
     navigate(path);
+  };
+  //Sign out current user
+  const onLogout = () => {
+    auth.signOut();
+    navigate("/");
   };
   return (
     <div className="navbar bg-primary shadow-xl">
@@ -40,36 +48,48 @@ function Navbar() {
               <i className="fa-regular fa-user " />
             </div>
           </label>
-          <ul
-            tabIndex={0}
-            className={
-              dropdown
-                ? "menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-                : "hidden"
-            }
-          >
-            <li>
-              <a
-                onClick={() => handleClick("/sign-in")}
-                className="justify-between"
-              >
-                Sign In
-              </a>
-            </li>
-            <li>
-              <a onClick={() => handleClick("/sign-up")}>Sign Up</a>
-            </li>
+          {/* If user is signed in show log out option, otherwise sign in */}
+          {auth.currentUser ? (
+            <ul
+              tabIndex={0}
+              className={
+                dropdown
+                  ? "menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                  : "hidden"
+              }
+            >
+              {/* USER */}
 
-            {/* <li>
-              <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li> */}
-          </ul>
+              <li onClick={() => navigate("/profile")}>
+                <a className="justify-between ">Profile</a>
+              </li>
+              <li onClick={onLogout}>
+                <a>Logout</a>
+              </li>
+            </ul>
+          ) : (
+            <ul
+              tabIndex={0}
+              className={
+                dropdown
+                  ? "menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                  : "hidden"
+              }
+            >
+              {/* NO USER */}
+              <li>
+                <a
+                  onClick={() => handleClick("/sign-in")}
+                  className="justify-between"
+                >
+                  Sign In
+                </a>
+              </li>
+              <li>
+                <a onClick={() => handleClick("/sign-up")}>Sign Up</a>
+              </li>
+            </ul>
+          )}
         </div>
         {/* SHOPPING CART */}
         <div
