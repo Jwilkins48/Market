@@ -40,12 +40,42 @@ function Shop() {
       }
     };
     fetchClothes();
-  }, [params.gender]);
+  }, [params.gender, params.clothingItem]);
+
   return (
     <div>
-      <header>
-        <Link to="/shop/mens/shirt">Men</Link>
-        <Link to="/shop/women/shirt">Women</Link>
+      <header className="mt-5 mx-1">
+        <Link className="btn mr-3" to="/shop/mens/shirt">
+          Men
+        </Link>
+        <Link className="btn" to="/shop/women/shirt">
+          Women
+        </Link>
+        <div>
+          {params.gender === "mens" ? (
+            <div>
+              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
+                <li className="btn">Tops</li>
+                <li className="btn">Bottoms</li>
+                <li className="btn">Jackets & Coats</li>
+                <li className="btn">Button Down Shirts</li>
+              </ul>
+            </div>
+          ) : (
+            <div>
+              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
+                <Link to="/shop/women/tops" className="btn">
+                  Tops
+                </Link>
+                <li className="btn">Dresses</li>
+                <li className="btn">Bottoms</li>
+                <Link to="/shop/women/jacket" className="btn">
+                  Jackets & Coats
+                </Link>
+              </ul>
+            </div>
+          )}
+        </div>
       </header>
       {clothes?.map((clothing) => (
         <Item clothing={clothing.data} id={clothing.id} key={clothing.id} />
