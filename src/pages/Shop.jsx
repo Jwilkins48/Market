@@ -44,27 +44,51 @@ function Shop() {
 
   return (
     <div>
-      <header className="mt-5 mx-1">
-        <Link className="btn mr-3" to="/shop/mens/shirt">
+      <header className="mt-5 mx-1 lg:w-[73rem] lg:mt-10 lg:m-auto">
+        <Link
+          data-theme="corporate"
+          className="btn mr-3 btn-secondary rounded-lg"
+          to="/shop/mens/shirt"
+        >
           Men
         </Link>
-        <Link className="btn" to="/shop/women/shirt">
+        <Link
+          data-theme="corporate"
+          className="btn btn-secondary rounded-lg"
+          to="/shop/women/shirt"
+        >
           Women
         </Link>
         <div>
           {params.gender === "mens" ? (
             <div>
               <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
-                <Link to="/shop/mens/shirt" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/mens/shirt"
+                  className="btn btn-primary "
+                >
                   Tops
                 </Link>
-                <Link to="/shop/mens/bottoms" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/mens/bottoms"
+                  className="btn  btn-primary"
+                >
                   Bottoms
                 </Link>
-                <Link to="/shop/mens/jacket" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/mens/jacket"
+                  className="btn  btn-primary"
+                >
                   Jackets & Coats
                 </Link>
-                <Link to="/shop/mens/dress-shirt" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/mens/dress-shirt"
+                  className="btn btn-primary"
+                >
                   Button Down Shirts
                 </Link>
               </ul>
@@ -72,16 +96,32 @@ function Shop() {
           ) : (
             <div>
               <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
-                <Link to="/shop/women/tops" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/women/tops"
+                  className="btn  btn-primary"
+                >
                   Tops
                 </Link>
-                <Link to="/shop/women/dresses" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/women/dresses"
+                  className="btn btn-primary"
+                >
                   Dresses
                 </Link>
-                <Link to="/shop/women/bottoms" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/women/bottoms"
+                  className="btn btn-primary"
+                >
                   Bottoms
                 </Link>
-                <Link to="/shop/women/jacket" className="btn">
+                <Link
+                  data-theme="emerald"
+                  to="/shop/women/jacket"
+                  className="btn btn-primary"
+                >
                   Jackets & Coats
                 </Link>
               </ul>
@@ -89,7 +129,8 @@ function Shop() {
           )}
         </div>
       </header>
-      <div className="grid grid-cols-1 lg:grid-cols-3 items-center">
+      <div className="divider lg:mx-20 mx-auto"></div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center lg:w-[80rem] lg:m-auto">
         {clothes?.map((clothing) => (
           <Item clothing={clothing.data} id={clothing.id} key={clothing.id} />
         ))}
