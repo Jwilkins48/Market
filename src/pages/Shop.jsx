@@ -55,10 +55,18 @@ function Shop() {
           {params.gender === "mens" ? (
             <div>
               <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
-                <li className="btn">Tops</li>
-                <li className="btn">Bottoms</li>
-                <li className="btn">Jackets & Coats</li>
-                <li className="btn">Button Down Shirts</li>
+                <Link to="/shop/mens/shirt" className="btn">
+                  Tops
+                </Link>
+                <Link to="/shop/mens/bottoms" className="btn">
+                  Bottoms
+                </Link>
+                <Link to="/shop/mens/jacket" className="btn">
+                  Jackets & Coats
+                </Link>
+                <Link to="/shop/mens/dress-shirt" className="btn">
+                  Button Down Shirts
+                </Link>
               </ul>
             </div>
           ) : (
@@ -67,8 +75,12 @@ function Shop() {
                 <Link to="/shop/women/tops" className="btn">
                   Tops
                 </Link>
-                <li className="btn">Dresses</li>
-                <li className="btn">Bottoms</li>
+                <Link to="/shop/women/dresses" className="btn">
+                  Dresses
+                </Link>
+                <Link to="/shop/women/bottoms" className="btn">
+                  Bottoms
+                </Link>
                 <Link to="/shop/women/jacket" className="btn">
                   Jackets & Coats
                 </Link>
@@ -77,9 +89,11 @@ function Shop() {
           )}
         </div>
       </header>
-      {clothes?.map((clothing) => (
-        <Item clothing={clothing.data} id={clothing.id} key={clothing.id} />
-      ))}
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center">
+        {clothes?.map((clothing) => (
+          <Item clothing={clothing.data} id={clothing.id} key={clothing.id} />
+        ))}
+      </div>
     </div>
   );
 }
