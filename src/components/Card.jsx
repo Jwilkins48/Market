@@ -1,8 +1,28 @@
 import React from "react";
-import { setDoc, doc } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  collection,
+  getCountFromServer,
+} from "firebase/firestore";
 import { db } from "../../firebase.config";
 
-function Card({ clothing, handleAddToCart }) {
+function Card({ clothing, id, setCheckOut, checkOut }) {
+  const handleAddToCart = async () => {
+    try {
+      await setDoc(doc(db, "cartItems", id), clothing);
+      //How many items in cart collection
+      const coll = collection(db, "cartItems");
+      const snapshot = await getCountFromServer(coll);
+      console.log("count: ", snapshot.data().count);
+      setCheckOut(snapshot.data().count);
+
+      alert("added to cart!");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex">
       <div className="card mb-4  w-80 h-auto relative bg-[#f2f4f5] flex items-center m-auto mt-4 shadow-2xl">
@@ -17,7 +37,7 @@ function Card({ clothing, handleAddToCart }) {
             </div>
             <div className="mr-3">
               <button
-                // onClick={handleAddToCart}
+                onClick={handleAddToCart}
                 className="p-2 rounded-xl text-neutral font-bold "
               >
                 Add to cart

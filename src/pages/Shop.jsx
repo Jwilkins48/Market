@@ -4,7 +4,7 @@ import { db } from "../../firebase.config";
 import Card from "../components/Card";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-function Shop() {
+function Shop({ setCheckOut, checkOut }) {
   const [clothes, setClothes] = useState(null);
   const params = useParams();
 
@@ -128,7 +128,13 @@ function Shop() {
       <div className="divider lg:mx-40 mx-auto"></div>
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center lg:w-[80rem] lg:m-auto">
         {clothes?.map((clothing) => (
-          <Card clothing={clothing.data} id={clothing.id} key={clothing.id} />
+          <Card
+            setCheckOut={setCheckOut}
+            checkOut={checkOut}
+            clothing={clothing.data}
+            id={clothing.id}
+            key={clothing.id}
+          />
         ))}
       </div>
     </div>

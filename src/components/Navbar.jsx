@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+import {
+  collection,
+  getCountFromServer,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../../firebase.config";
 
-function Navbar() {
+function Navbar({ checkOut }) {
   const auth = getAuth();
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(false);
   const [cartDropdown, setCartDropdown] = useState(false);
+
   //Close daisy dropdown tab on click
   const handleClick = (path) => {
     const elem = document.activeElement;
@@ -15,6 +24,12 @@ function Navbar() {
     }
     navigate(path);
   };
+
+  // //How many items in cart collection
+  // const coll = collection(db, "cartItems");
+  // const snapshot = await getCountFromServer(coll);
+  // return snapshot.data().count;
+
   //Sign out current user
   const onLogout = () => {
     auth.signOut();
@@ -113,7 +128,7 @@ function Navbar() {
                 />
               </svg>
               {/* CHANGE TO CHECKOUT LENGTH  */}
-              <span className="badge badge-sm indicator-item">0</span>
+              <span className="badge badge-sm indicator-item">{checkOut}</span>
             </div>
           </label>
           <div
@@ -126,7 +141,7 @@ function Navbar() {
           >
             <div className="card-body">
               {/* CHANGE TO CHECKOUT ITEM LENGTH/PRICE  */}
-              <span className="font-bold text-lg">0 Items</span>
+              <span className="font-bold text-lg">{checkOut} Items</span>
               <span className="text-info">Subtotal: $0</span>
               <div className="card-actions">
                 <button
