@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebase.config";
-import Item from "./Item";
-import {
-  collection,
-  getDocs,
-  query,
-  where,
-  orderBy,
-  limit,
-} from "firebase/firestore";
+import Card from "../components/Card";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 function Shop() {
   const [clothes, setClothes] = useState(null);
@@ -45,24 +38,27 @@ function Shop() {
   return (
     <div>
       <header className="mt-5 mx-1 lg:w-[73rem] lg:mt-10 lg:m-auto">
-        <Link
-          data-theme="corporate"
-          className="btn mr-3 btn-secondary rounded-lg"
-          to="/shop/mens/shirt"
-        >
-          Men
-        </Link>
-        <Link
-          data-theme="corporate"
-          className="btn btn-secondary rounded-lg"
-          to="/shop/women/shirt"
-        >
-          Women
-        </Link>
+        <div className="tabs">
+          <Link
+            data-theme="corporate"
+            className="tab tab-lifted h-10 bg-secondary text-neutral mx-1 font-bold"
+            to="/shop/mens/shirt"
+          >
+            Men
+          </Link>
+          <Link
+            data-theme="corporate"
+            className="tab tab-lifted h-10 bg-secondary text-neutral font-bold"
+            to="/shop/women/tops"
+          >
+            Women
+          </Link>
+        </div>
+
         <div>
           {params.gender === "mens" ? (
-            <div>
-              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
+            <div className="">
+              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2 ml-1">
                 <Link
                   data-theme="emerald"
                   to="/shop/mens/shirt"
@@ -105,17 +101,17 @@ function Shop() {
                 </Link>
                 <Link
                   data-theme="emerald"
-                  to="/shop/women/dresses"
-                  className="btn btn-primary"
-                >
-                  Dresses
-                </Link>
-                <Link
-                  data-theme="emerald"
                   to="/shop/women/bottoms"
                   className="btn btn-primary"
                 >
                   Bottoms
+                </Link>
+                <Link
+                  data-theme="emerald"
+                  to="/shop/women/dresses"
+                  className="btn btn-primary"
+                >
+                  Dresses
                 </Link>
                 <Link
                   data-theme="emerald"
@@ -129,10 +125,10 @@ function Shop() {
           )}
         </div>
       </header>
-      <div className="divider lg:mx-20 mx-auto"></div>
+      <div className="divider lg:mx-40 mx-auto"></div>
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center lg:w-[80rem] lg:m-auto">
         {clothes?.map((clothing) => (
-          <Item clothing={clothing.data} id={clothing.id} key={clothing.id} />
+          <Card clothing={clothing.data} id={clothing.id} key={clothing.id} />
         ))}
       </div>
     </div>

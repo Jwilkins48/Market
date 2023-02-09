@@ -7,6 +7,8 @@ import Item from "./pages/Item";
 import CheckOut from "./pages/CheckOut";
 import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
+import Profile from "./pages/Profile";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -19,8 +21,12 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/shop/:gender/:clothingItem" element={<Shop />} />
           <Route path="/shop/:id" element={<Item />} />
-          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/check-out" element={<CheckOut />} />
+          <Route path="/profile" element={<Profile />} />
+          //Must be signed in to view wishlist
+          <Route path="/wishlist" element={<PrivateRoute />}>
+            <Route path="/wishlist" element={<Wishlist />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
