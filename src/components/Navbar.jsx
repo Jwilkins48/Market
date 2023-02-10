@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import {
-  collection,
-  getCountFromServer,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../../firebase.config";
 
 function Navbar({ checkOut }) {
   const auth = getAuth();
@@ -123,7 +115,7 @@ function Navbar({ checkOut }) {
                 />
               </svg>
               {/* CHANGE TO CHECKOUT LENGTH  */}
-              <span className="badge badge-sm indicator-item">{checkOut}</span>
+              <span className="badge badge-sm indicator-item">0</span>
             </div>
           </label>
           <div
@@ -136,7 +128,7 @@ function Navbar({ checkOut }) {
           >
             <div className="card-body">
               {/* CHANGE TO CHECKOUT ITEM LENGTH/PRICE  */}
-              <span className="font-bold text-lg">{checkOut} Items</span>
+              <span className="font-bold text-lg">0 Items</span>
               <span className="text-info">Subtotal: $0</span>
               <div className="card-actions">
                 <button

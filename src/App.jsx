@@ -28,7 +28,10 @@ function App() {
             element={<Shop checkOut={checkOut} setCheckOut={setCheckOut} />}
           />
           <Route path="/shop/:id" element={<Item />} />
-          <Route path="/check-out" element={<CheckOut />} />
+          <Route
+            path="/check-out"
+            element={<CheckOut setCheckOut={setCheckOut} checkOut={checkOut} />}
+          />
           <Route path="/profile" element={<Profile />} />
           //Must be signed in to view wishlist
           <Route path="/wishlist" element={<PrivateRoute />}>

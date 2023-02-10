@@ -3,7 +3,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import CheckOutCard from "../components/CheckOutCard";
 
-function CheckOut() {
+function CheckOut({ setCheckOut }) {
   const [cart, setCart] = useState(null);
 
   useEffect(() => {
@@ -27,15 +27,27 @@ function CheckOut() {
     };
     fetchCheckOut();
   }, []);
+
+  //Total price
+  const calcPrice = cart?.reduce(
+    (a, v) => (a = a + v.data.price * v.data.quantity),
+    0
+  );
+
   return (
-    <div>
+    <div className="relative h-[90vh]">
       {cart?.map((cartItem) => (
         <CheckOutCard
+          setCheckOut={setCheckOut}
           cartItem={cartItem.data}
           id={cartItem.id}
           key={cartItem.id}
         />
       ))}
+
+      <h1 className="absolute bottom-10 left-8 font-bold text-2xl text-primary">
+        Total: ${calcPrice}
+      </h1>
     </div>
   );
 }

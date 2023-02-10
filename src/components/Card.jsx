@@ -16,17 +16,20 @@ function Card({ clothing, id, setCheckOut, checkOut }) {
     const docSnap = await getDoc(docRef);
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
-      // clothing.quantity = clothing.quantity + 1;
       await setDoc(doc(db, "cartItems", id), clothing);
-      setCheckOut((prevCheckOut) => prevCheckOut + 1);
       //Confirm
       alert("added to cart!");
     } else {
       setQuantity(quantity + 1);
+
+      await updateDoc(doc(db, "clothing", id), {
+        quantity: quantity + 1,
+      });
+
       await updateDoc(doc(db, "cartItems", id), {
         quantity: quantity + 1,
       });
-      setCheckOut((prevCheckOut) => prevCheckOut + 1);
+      // setCheckOut((prevCheckOut) => prevCheckOut + 1);
       console.log(`quantity: ${quantity + 1}`);
     }
   };
