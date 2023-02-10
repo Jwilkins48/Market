@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import CheckOutCard from "../components/CheckOutCard";
 
@@ -36,6 +36,14 @@ function CheckOut({ setCheckOut }) {
 
   return (
     <div className="relative h-[90vh]">
+      <header>
+        <h1 className="font-bold text-3xl text-blue-400 text-center mt-8 mb-6 checkOut">
+          Check Out
+        </h1>
+        <div className="divider mx-5">
+          <i className="fa-regular text-blue-300 fa-heart" />
+        </div>
+      </header>
       {cart?.map((cartItem) => (
         <CheckOutCard
           setCheckOut={setCheckOut}
