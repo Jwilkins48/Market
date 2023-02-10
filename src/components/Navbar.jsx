@@ -25,11 +25,6 @@ function Navbar({ checkOut }) {
     navigate(path);
   };
 
-  // //How many items in cart collection
-  // const coll = collection(db, "cartItems");
-  // const snapshot = await getCountFromServer(coll);
-  // return snapshot.data().count;
-
   //Sign out current user
   const onLogout = () => {
     auth.signOut();

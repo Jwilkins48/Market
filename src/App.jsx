@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import useLocalStorage from "./hooks/useLocalStorage";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -12,6 +13,7 @@ import Profile from "./pages/Profile";
 import { useState } from "react";
 
 function App() {
+  // const [checkOut, setCheckOut] = useLocalStorage("checkOut", 0);
   const [checkOut, setCheckOut] = useState(0);
   return (
     <div className="app">

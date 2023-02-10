@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   setDoc,
+  getDoc,
   doc,
   collection,
   getCountFromServer,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
 function Card({ clothing, id, setCheckOut, checkOut }) {
+  const [quantity, setQuantity] = useState(1);
   const handleAddToCart = async () => {
-    try {
+    const docRef = doc(db, "cartItems", id);
+    const docSnap = await getDoc(docRef);
+    //If item is in cart add quantity - else add to collection
+    if (!docSnap.exists()) {
+      // clothing.quantity = clothing.quantity + 1;
       await setDoc(doc(db, "cartItems", id), clothing);
-      //How many items in cart collection
-      const coll = collection(db, "cartItems");
-      const snapshot = await getCountFromServer(coll);
-      console.log("count: ", snapshot.data().count);
-      setCheckOut(snapshot.data().count);
-
+      setCheckOut((prevCheckOut) => prevCheckOut + 1);
+      //Confirm
       alert("added to cart!");
-    } catch (error) {
-      console.log(error);
+    } else {
+      setQuantity(quantity + 1);
+      await updateDoc(doc(db, "cartItems", id), {
+        quantity: quantity + 1,
+      });
+      setCheckOut((prevCheckOut) => prevCheckOut + 1);
+      console.log(`quantity: ${quantity + 1}`);
     }
   };
 
