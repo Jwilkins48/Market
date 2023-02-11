@@ -20,13 +20,12 @@ function CheckOut({ setCheckOut }) {
           });
         });
         setCart(cart);
-        console.log(cart);
       } catch (error) {
         console.log(error);
       }
     };
     fetchCheckOut();
-  }, []);
+  }, []); //cart
 
   //Total price
   const calcPrice = cart?.reduce(
@@ -53,9 +52,9 @@ function CheckOut({ setCheckOut }) {
         />
       ))}
 
-      <h1 className="absolute bottom-10 left-8 font-bold text-2xl text-primary">
-        Total: ${calcPrice}
-      </h1>
+      <p className="absolute bottom-10 left-8 font-bold text-2xl text-primary">
+        Total: ${`${calcPrice}`}{" "}
+      </p>
     </div>
   );
 }
