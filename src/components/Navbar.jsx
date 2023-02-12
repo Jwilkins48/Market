@@ -23,7 +23,7 @@ function Navbar({ checkOut }) {
     navigate("/");
   };
   return (
-    <div className="navbar bg-primary shadow-xl">
+    <div className="navbar bg-primary shadow-2xl">
       <div className="flex-1">
         <a
           onClick={() => navigate("/")}

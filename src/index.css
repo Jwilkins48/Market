@@ -14,9 +14,30 @@
 .app {
   font-family: "Quicksand", sans-serif;
 }
-.signIn {
-  font-family: "Unbounded", cursive;
-}
+.signIn,
 .checkOut {
   font-family: "Unbounded", cursive;
+}
+
+.background {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.img {
+  transition: 0.8s ease-in-out transform;
+  filter: brightness(60%);
+}
+.img:hover {
+  transform: scale(1.02);
+  filter: brightness(61.5%);
+}
+
+.shop {
+  font-size: 45px;
+  font-family: "Montserrat", sans-serif;
 }
