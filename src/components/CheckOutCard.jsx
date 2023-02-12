@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
-function CheckOutCard({ cartItem, id }) {
-  const [hi, setHi] = useState("hi");
+function CheckOutCard({ cartItem, id, deleteCartItem }) {
   //displayed quantity
   const [quantity, setQuantity] = useState(
     cartItem.quantity === 0 ? 1 : cartItem.quantity
@@ -23,18 +22,19 @@ function CheckOutCard({ cartItem, id }) {
     });
   };
 
-  const deleteCartItem = async (id) => {
-    await deleteDoc(doc(db, "cartItems", id));
-    console.log("deleted");
-    await updateDoc(doc(db, "clothing", id), {
-      quantity: 1,
-    });
-  };
+  useEffect(() => {
+    quantity === 0 ? deleteCartItem(id) : "";
+  }, [quantity]);
 
   return (
-    <div className="w-80 h-40 m-auto mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-center rounded-2xl shadow-2xl">
+    <div className="mx-5 lg:w-96 h-40 m-auto relative mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-center rounded-2xl shadow-2xl">
       <div>
-        <button onClick={() => deleteCartItem(id)}>X</button>
+        <button
+          className="absolute top-2 right-5 opacity-[.45] hover:text-blue-400"
+          onClick={() => deleteCartItem(id)}
+        >
+          <i className="fa-solid fa-xmark" />
+        </button>
         <figure className="w-20">
           <img src={cartItem.image[0]} alt={`${cartItem.gender} clothing`} />
         </figure>
@@ -50,14 +50,14 @@ function CheckOutCard({ cartItem, id }) {
             <div className="text-lg font-bold text-neutral border border-primary flex justify-around w-24">
               <div
                 onClick={minusQuantity}
-                className="border-r border-primary text-sm px-1 pr-3 w-6 flex justify-center items-center"
+                className="border-r border-primary text-sm px-1 pr-3 w-6 flex justify-center items-center cursor-pointer"
               >
                 <i className="fa-solid fa-minus" />
               </div>
               <p>{quantity}</p>
               <div
                 onClick={addQuantity}
-                className="border-l border-primary text-sm px-1 pl-2 w-6 flex justify-center items-center"
+                className="border-l border-primary text-sm px-1 pl-2 w-6 flex justify-center items-center cursor-pointer"
               >
                 <i className="fa-solid fa-plus" />
               </div>
