@@ -30,11 +30,11 @@
 
 .img {
   transition: 0.8s ease-in-out transform;
-  filter: brightness(60%);
+  filter: brightness(55%);
 }
 .img:hover {
   transform: scale(1.02);
-  filter: brightness(61.5%);
+  filter: brightness(56%);
 }
 
 .shop {

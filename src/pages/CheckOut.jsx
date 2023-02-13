@@ -9,9 +9,13 @@ import {
 import { db } from "../../firebase.config";
 import CheckOutCard from "../components/CheckOutCard";
 
-function CheckOut({ setCheckOut }) {
+function CheckOut() {
   const [cart, setCart] = useState(null);
-
+  //Total items in cart
+  const cartQuantity = cart?.map((item) => item.data.quantity);
+  const cartTotal = cartQuantity?.reduce(
+    (accumulator, currentValue) => accumulator + currentValue
+  );
   //Total price
   const calcPrice = cart?.reduce(
     (a, v) => (a = a + v.data.price * v.data.quantity),
@@ -38,7 +42,7 @@ function CheckOut({ setCheckOut }) {
     };
 
     fetchCheckOut();
-  }, []); //cart
+  }, []);
 
   const deleteCartItem = async (id) => {
     if (window.confirm("Remove from cart?")) {
@@ -65,7 +69,6 @@ function CheckOut({ setCheckOut }) {
           {cart?.map((cartItem) => (
             <CheckOutCard
               deleteCartItem={deleteCartItem}
-              setCheckOut={setCheckOut}
               cartItem={cartItem.data}
               id={cartItem.id}
               key={cartItem.id}
@@ -75,7 +78,7 @@ function CheckOut({ setCheckOut }) {
         <div className="lg:w-[25rem] mx-5 rounded-2xl shadow-2xl bg-[#f2f4f5] mt-4 h-[21rem] relative my-0 mb-3">
           <div className="flex flex-col ml-5 mt-6">
             <p className="text-2xl ">
-              {cart?.length} {cart?.length === 1 ? "ITEM" : "ITEMS"}
+              {cartTotal} {cart?.length === 1 ? "ITEM" : "ITEMS"}
             </p>
             <div className="divider w-64 lg:w-80 my-3"></div>
             <div className="flex flex-col justify-end gap-2 ">

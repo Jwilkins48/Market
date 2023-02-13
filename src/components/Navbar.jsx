@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase.config";
 
-function Navbar({ checkOut }) {
+function Navbar() {
   const auth = getAuth();
   const navigate = useNavigate();
   const [dropdown, setDropdown] = useState(false);
   const [cartDropdown, setCartDropdown] = useState(false);
+  const [cart, setCart] = useState(null);
 
   //Close daisy dropdown tab on click
   const handleClick = (path) => {
@@ -22,6 +25,41 @@ function Navbar({ checkOut }) {
     auth.signOut();
     navigate("/");
   };
+
+  useEffect(() => {
+    const fetchCheckOut = async () => {
+      try {
+        const checkOutRef = collection(db, "cartItems");
+        const checkOutSnap = await getDocs(checkOutRef);
+        //Giving each item id/data
+        const cart = [];
+        checkOutSnap.forEach((doc) => {
+          return cart.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        setCart(cart);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCheckOut();
+  }, []);
+
+  //Total price
+  const calcPrice = cart?.reduce(
+    (a, v) => (a = a + v.data.price * v.data.quantity),
+    0
+  );
+
+  //Total cart items with quantity
+  const cartQuantities = cart?.map((item) => item.data.quantity);
+  const cartTotal = cartQuantities?.reduce(
+    (accumulator, currentValue) => accumulator + currentValue
+  );
+
   return (
     <div className="navbar bg-primary shadow-2xl">
       <div className="flex-1">
@@ -115,7 +153,7 @@ function Navbar({ checkOut }) {
                 />
               </svg>
               {/* CHANGE TO CHECKOUT LENGTH  */}
-              <span className="badge badge-sm indicator-item">0</span>
+              <span className="badge badge-sm indicator-item">{cartTotal}</span>
             </div>
           </label>
           <div
@@ -128,8 +166,11 @@ function Navbar({ checkOut }) {
           >
             <div className="card-body">
               {/* CHANGE TO CHECKOUT ITEM LENGTH/PRICE  */}
-              <span className="font-bold text-lg">0 Items</span>
-              <span className="text-info">Subtotal: $0</span>
+              <span className="font-bold text-lg">
+                {" "}
+                {cartTotal} {cartTotal === 1 ? "ITEM" : "ITEMS"}
+              </span>
+              <span className="text-info">Subtotal: ${calcPrice}</span>
               <div className="card-actions">
                 <button
                   onClick={() => handleClick("/check-out")}

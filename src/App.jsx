@@ -13,7 +13,6 @@ import Profile from "./pages/Profile";
 import { useState } from "react";
 
 function App() {
-  // const [checkOut, setCheckOut] = useLocalStorage("checkOut", 0);
   const [checkOut, setCheckOut] = useState(0);
   return (
     <div className="app">

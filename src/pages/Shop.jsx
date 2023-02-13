@@ -4,7 +4,7 @@ import { db } from "../../firebase.config";
 import Card from "../components/Card";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-function Shop({ setCheckOut, checkOut }) {
+function Shop({ checkOut, setCheckOut }) {
   const [clothes, setClothes] = useState(null);
   const params = useParams();
 
