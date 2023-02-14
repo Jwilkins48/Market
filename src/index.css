@@ -1,22 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Itim&family=Montserrat&family=Quicksand&family=Solitreo&family=Unbounded&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway&family=Unbounded&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.navbar {
-  font-family: "Unbounded", cursive;
-  /* font-family: "Itim", cursive;
-  font-family: "Montserrat", sans-serif;
-  font-family: "Quicksand", sans-serif;
-  font-family: "Solitreo", cursive;
-  font-family: "Unbounded", cursive; */
-}
 .app {
   font-family: "Quicksand", sans-serif;
 }
 .signIn,
-.checkOut {
+.checkOut,
+.navbar {
   font-family: "Unbounded", cursive;
+}
+
+.wishlist {
+  font-family: "Raleway", sans-serif;
+  font-size: 45px;
 }
 
 .background {

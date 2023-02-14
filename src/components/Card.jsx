@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   setDoc,
   getDoc,
@@ -7,15 +7,14 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
-function Card({ clothing, id }) {
+function Card({ clothing, id, InWishlist, onDelete }) {
+  const auth = getAuth();
   const [quantity, setQuantity] = useState(clothing.quantity);
   const [wishlist, setWishlist] = useState(false);
 
   const handleAddToCart = async () => {
-    // const auth = getAuth();
-
     const docRef = doc(db, "cartItems", id);
     const docSnap = await getDoc(docRef);
     setQuantity((prevCheckOut) => prevCheckOut + 1);
@@ -23,12 +22,6 @@ function Card({ clothing, id }) {
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
       await setDoc(doc(db, "cartItems", id), clothing);
-
-      // const coll = collection(db, "cartItems");
-      // const snapshot = await getCountFromServer(coll);
-      // console.log("count: ", snapshot.data().count);
-      // setCheckOut(snapshot.data().count);
-
       alert("added to cart!");
     } else {
       await updateDoc(doc(db, "clothing", id), {
@@ -42,9 +35,10 @@ function Card({ clothing, id }) {
     }
   };
 
-  const auth = getAuth();
   const onclick = async () => {
-    try {
+    if (InWishlist === true) {
+      onDelete(id);
+    } else {
       setWishlist(!wishlist);
       const dataCopy = {
         ...clothing,
@@ -53,10 +47,23 @@ function Card({ clothing, id }) {
       };
       await setDoc(doc(db, "wishlist", id), dataCopy);
       console.log("added to wishlist");
-    } catch (error) {
-      console.log(error);
     }
   };
+
+  //Check if item is in wishlist
+  useEffect(() => {
+    const itemInWishlist = async () => {
+      const docRef = doc(db, "wishlist", id);
+      const docSnap = await getDoc(docRef);
+      const userRef = docSnap.data()?.userRef;
+      if (auth.currentUser.uid === userRef) {
+        setWishlist(true);
+      } else {
+        setWishlist(false);
+      }
+    };
+    itemInWishlist();
+  }, []);
 
   return (
     <div className="flex">

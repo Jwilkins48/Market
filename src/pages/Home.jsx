@@ -10,8 +10,8 @@ function Home() {
         <img className="img h-[23rem] lg:h-auto" src={store} alt="store" />
       </figure>
       <div className="absolute lg:right-[22rem]">
-        <p className="text-red-100 text-4xl font-bold w-[20rem] checkOut">
-          Find Your New Favorite Outfit In Daisies Closet
+        <p className="text-red-100 text-4xl font-bold w-[20rem] lg:w-[31rem] mb-1 checkOut">
+          Find Your New Favorite Outfit In Daisies Closet!
         </p>
         <Link
           data-theme="emerald"
