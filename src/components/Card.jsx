@@ -8,9 +8,11 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-function Card({ clothing, id, InWishlist, onDelete }) {
+function Card({ clothing, id, onDelete }) {
   const auth = getAuth();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(clothing.quantity);
   const [wishlist, setWishlist] = useState(false);
 
@@ -35,8 +37,9 @@ function Card({ clothing, id, InWishlist, onDelete }) {
     }
   };
 
+  //Add to wishlist
   const onclick = async () => {
-    if (InWishlist === true) {
+    if (wishlist === true) {
       onDelete(id);
     } else {
       setWishlist(!wishlist);
@@ -84,7 +87,12 @@ function Card({ clothing, id, InWishlist, onDelete }) {
         <div className="h-26 py-3 mt-2 rounded-b-xl  absolute bottom-0 w-full">
           <div className="flex justify-between mt-2">
             <div className="ml-3 mb-2">
-              <p className="text-lg font-bold text-neutral">{clothing.title}</p>
+              <p
+                onClick={() => navigate(`/shop/${id}`)}
+                className="text-lg font-bold text-neutral cursor-pointer"
+              >
+                {clothing.title}
+              </p>
               <p className="mt-2 font-bold text-neutral">${clothing.price}</p>
             </div>
             <div className="mr-3">

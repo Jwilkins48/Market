@@ -5,17 +5,8 @@ import CheckOutCard from "../components/CheckOutCard";
 
 function CheckOut() {
   const [cart, setCart] = useState(null);
-  //Total items in cart
-  const cartQuantity = cart?.map((item) => item.data.quantity);
-  const cartTotal = cartQuantity?.reduce(
-    (accumulator, currentValue) => accumulator + currentValue
-  );
-  //Total price
-  const calcPrice = cart?.reduce(
-    (a, v) => (a = a + v.data.price * v.data.quantity),
-    0
-  );
 
+  //Fetch items in cart
   useEffect(() => {
     const fetchCheckOut = async () => {
       try {
@@ -38,6 +29,7 @@ function CheckOut() {
     fetchCheckOut();
   }, []);
 
+  //Delete from cart
   const deleteCartItem = async (id) => {
     if (window.confirm("Remove from cart?")) {
       await deleteDoc(doc(db, "cartItems", id));
@@ -47,6 +39,18 @@ function CheckOut() {
       console.log("Deleted");
     }
   };
+
+  //Total items in cart
+  const cartQuantity = cart?.map((item) => item.data.quantity);
+  const cartTotal = cartQuantity?.reduce(
+    (accumulator, currentValue) => accumulator + currentValue
+  );
+
+  //Total price
+  const calcPrice = cart?.reduce(
+    (a, v) => (a = a + v.data.price * v.data.quantity),
+    0
+  );
 
   return (
     <div className=" h-[90vh]">

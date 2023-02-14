@@ -53,10 +53,11 @@ function Navbar() {
     (a, v) => (a = a + v.data.price * v.data.quantity),
     0
   );
-
+  let cartTotal;
   //Total cart items with quantity
   const cartQuantities = cart?.map((item) => item.data.quantity);
-  const cartTotal = cartQuantities?.reduce(
+
+  cartTotal = cartQuantities?.reduce(
     (accumulator, currentValue) => accumulator + currentValue
   );
 
