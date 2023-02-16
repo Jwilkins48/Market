@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { setDoc, getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
-function ItemCard({ item, id }) {
+function ItemCard({ item, id, quantity, setQuantity }) {
   const params = useParams();
-  const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
   console.log(quantity);
 
   const handleAddToCart = async () => {
@@ -16,6 +16,7 @@ function ItemCard({ item, id }) {
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
       await setDoc(doc(db, "cartItems", id), item);
+      setLoading(false);
       alert("added to cart!");
     } else {
       await updateDoc(doc(db, "clothing", id), {
@@ -25,7 +26,8 @@ function ItemCard({ item, id }) {
       await updateDoc(doc(db, "cartItems", id), {
         quantity: quantity + 1,
       });
-      console.log(`quantity: ${quantity + 1}`);
+      // console.log(`quantity: ${quantity + 1}`);
+      setLoading(false);
     }
   };
   return (

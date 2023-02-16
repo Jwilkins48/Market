@@ -1,8 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway&family=Unbounded&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Dosis&family=Fredoka+One&family=Montserrat+Alternates&family=Quicksand&family=Raleway&family=Unbounded&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* font-family: 'Courgette', cursive;
+font-family: 'Dosis', sans-serif;
+font-family: 'Fredoka One', cursive;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Quicksand', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Unbounded', cursive; */
+.featured {
+  font-family: "Dosis", sans-serif;
+}
 .app {
   font-family: "Quicksand", sans-serif;
 }
@@ -10,6 +20,10 @@
 .checkOut,
 .navbar {
   font-family: "Unbounded", cursive;
+}
+
+.checkOut {
+  line-height: 45px;
 }
 
 .wishlist {

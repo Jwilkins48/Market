@@ -10,9 +10,11 @@ import {
 import { db } from "../../firebase.config";
 import { getAuth } from "firebase/auth";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
   const [wishlist, setWishlist] = useState(null);
+  const navigate = useNavigate();
   const auth = getAuth();
   useEffect(() => {
     const fetchCheckOut = async () => {
@@ -59,17 +61,31 @@ function Wishlist() {
       <div className="divider lg:w-[50rem] lg:mx-auto mx-8">
         <i className="fa-regular text-yellow-400 fa-heart" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {wishlist?.map((items) => (
-          <Card
-            onDelete={deleteWishlist}
-            clothing={items.data}
-            id={items.id}
-            key={items.id}
-            InWishlist={true}
-          />
-        ))}
-      </div>
+      {wishlist?.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {wishlist?.map((items) => (
+            <Card
+              onDelete={deleteWishlist}
+              clothing={items.data}
+              id={items.id}
+              key={items.id}
+              InWishlist={true}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-[20rem]">
+          <p className="text-3xl mb-5 font-bold text-neutral">
+            Your Wishlist Is Empty
+          </p>
+          <button
+            onClick={() => navigate("/shop/mens/shirt")}
+            className="btn w-40 bg-blue-300 border-none"
+          >
+            Go Shopping
+          </button>
+        </div>
+      )}
     </div>
   );
 }

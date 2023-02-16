@@ -11,6 +11,9 @@ function Navbar() {
   const [cartDropdown, setCartDropdown] = useState(false);
   const [cart, setCart] = useState(null);
 
+  let cartTotal;
+  let calcPrice;
+
   //Close daisy dropdown tab on click
   const handleClick = (path) => {
     const elem = document.activeElement;
@@ -48,22 +51,38 @@ function Navbar() {
     fetchCheckOut();
   }, []);
 
-  //Total price
-  const calcPrice = cart?.reduce(
-    (a, v) => (a = a + v.data.price * v.data.quantity),
-    0
-  );
-  let cartTotal;
-  //Total cart items with quantity
-  const cartQuantities = cart?.map((item) => item.data.quantity);
+  if (cart?.length > 0) {
+    calcPrice = cart?.reduce(
+      (a, v) => (a = a + v.data.price * v.data.quantity),
+      0
+    );
 
-  cartTotal = cartQuantities?.reduce(
-    (accumulator, currentValue) => accumulator + currentValue
-  );
+    //Total cart items with quantity
+    const cartQuantities = cart?.map((item) => item.data.quantity);
+
+    cartTotal = cartQuantities?.reduce(
+      (accumulator, currentValue) => accumulator + currentValue
+    );
+  }
 
   return (
-    <div className="navbar bg-primary shadow-2xl">
-      <div className="flex-1">
+    <div className="navbar bg-primary shadow-2xl flex items-center justify-between">
+      <div className="hidden sm:block md:block lg:block">
+        <a
+          onClick={() => navigate("/shop/mens/shirt")}
+          className="btn btn-ghost normal-case text-accent text-lg"
+        >
+          Mens
+        </a>
+        <a
+          onClick={() => navigate("/shop/women/tops")}
+          className="btn btn-ghost normal-case text-accent text-lg"
+        >
+          Womens
+        </a>
+      </div>
+
+      <div>
         <a
           onClick={() => navigate("/")}
           className="btn btn-ghost normal-case text-accent text-3xl"
@@ -71,7 +90,7 @@ function Navbar() {
           Daisies
         </a>
       </div>
-      <div>
+      <div className="mr-2">
         {/* WISHLIST */}
         <button
           onClick={() => navigate("/wishlist")}
@@ -154,7 +173,9 @@ function Navbar() {
                 />
               </svg>
               {/* CHANGE TO CHECKOUT LENGTH  */}
-              <span className="badge badge-sm indicator-item">{cartTotal}</span>
+              <span className="badge badge-sm indicator-item">
+                {cartTotal > 0 ? cartTotal : 0}
+              </span>
             </div>
           </label>
           <div

@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  setDoc,
-  getDoc,
-  doc,
-  updateDoc,
-  serverTimestamp,
-} from "firebase/firestore";
+import { setDoc, getDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -13,29 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Card({ clothing, id, onDelete }) {
   const auth = getAuth();
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(clothing.quantity);
   const [wishlist, setWishlist] = useState(false);
-
-  const handleAddToCart = async () => {
-    const docRef = doc(db, "cartItems", id);
-    const docSnap = await getDoc(docRef);
-    setQuantity((prevCheckOut) => prevCheckOut + 1);
-
-    //If item is in cart add quantity - else add to collection
-    if (!docSnap.exists()) {
-      await setDoc(doc(db, "cartItems", id), clothing);
-      alert("added to cart!");
-    } else {
-      await updateDoc(doc(db, "clothing", id), {
-        quantity: quantity + 1,
-      });
-
-      await updateDoc(doc(db, "cartItems", id), {
-        quantity: quantity + 1,
-      });
-      console.log(`quantity: ${quantity + 1}`);
-    }
-  };
 
   //Add to wishlist
   const onclick = async () => {
@@ -81,28 +53,22 @@ function Card({ clothing, id, onDelete }) {
             <i className="fa-solid fa-heart" />
           )}
         </button>
-        <figure className="w-64 mb-16">
+        <figure
+          onClick={() => navigate(`/shop/${id}`)}
+          className="w-64 mb-16 cursor-pointer"
+        >
           <img src={clothing.image[0]} alt={`${clothing.gender} clothing`} />
         </figure>
         <div className="h-26 py-3 mt-2 rounded-b-xl  absolute bottom-0 w-full">
-          <div className="flex justify-between mt-2">
-            <div className="ml-3 mb-2">
-              <p
-                onClick={() => navigate(`/shop/${id}`)}
-                className="text-lg font-bold text-neutral cursor-pointer"
-              >
+          <div className="flex justify-between mt-2 items-center mb-2">
+            <div className="ml-3">
+              <p className="text-lg font-bold text-neutral cursor-pointer">
                 {clothing.title}
               </p>
-              <p className="mt-2 font-bold text-neutral">${clothing.price}</p>
             </div>
-            <div className="mr-3">
-              <button
-                onClick={handleAddToCart}
-                className="p-2 rounded-xl text-neutral font-bold "
-              >
-                Add to cart
-              </button>
-            </div>
+            <p className="mt-2 mr-3 font-bold text-neutral">
+              ${clothing.price}
+            </p>
           </div>
         </div>
       </div>

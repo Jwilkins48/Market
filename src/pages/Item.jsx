@@ -7,6 +7,7 @@ function Item() {
   const params = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   //Fetch clothing with matching id
   useEffect(() => {
@@ -16,6 +17,7 @@ function Item() {
 
       if (itemSnap.exists()) {
         setItem(itemSnap.data());
+        setQuantity(itemSnap.data().quantity);
         setLoading(false);
       }
     };
@@ -25,7 +27,13 @@ function Item() {
 
   return (
     <div>
-      <ItemCard item={item} id={params.id} key={params.id} />
+      <ItemCard
+        item={item}
+        quantity={quantity}
+        setQuantity={setQuantity}
+        id={params.id}
+        key={params.id}
+      />
     </div>
   );
 }
