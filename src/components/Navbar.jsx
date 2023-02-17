@@ -85,7 +85,7 @@ function Navbar() {
       <div>
         <a
           onClick={() => navigate("/")}
-          className="btn btn-ghost normal-case text-accent text-3xl"
+          className="btn btn-ghost normal-case text-accent text-3xl lg:mr-20"
         >
           Daisies
         </a>

@@ -48,6 +48,10 @@ function CheckOut() {
         quantity: 1,
       });
 
+      await updateDoc(doc(db, "clothing", id), {
+        size: "Small",
+      });
+
       const updatedCart = cart.filter((item) => item.id !== id);
       setCart(updatedCart);
       console.log("Deleted");
@@ -102,7 +106,7 @@ function CheckOut() {
                 <p>Tax: $0.00</p>
                 <div className="divider w-32 my-0"></div>
                 <h1 className="checkOut mt-1">Total: ${calcPrice}</h1>
-                <button className="btn bg-blue-200 hover:bg-blue-300 border-0 mr-5 text-blue-500 mt-2 checkOut">
+                <button className="btn bg-blue-200 hover:bg-blue-300 border-0 mr-5 text-blue-500 checkOut">
                   PLACE ORDER
                 </button>
               </div>

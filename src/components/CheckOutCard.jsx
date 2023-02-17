@@ -7,7 +7,7 @@ function CheckOutCard({ cartItem, id, deleteCartItem }) {
   const [quantity, setQuantity] = useState(
     cartItem.quantity === 0 ? 1 : cartItem.quantity
   );
-  console.log(cartItem);
+
   //Add quantity and update in firebase
   const addQuantity = async () => {
     setQuantity(quantity + 1);
@@ -44,7 +44,9 @@ function CheckOutCard({ cartItem, id, deleteCartItem }) {
       <div className=" justify-between mt-2">
         <div className="ml-3 mb-2 w-40">
           <div className="text-lg font-bold text-neutral">{cartItem.title}</div>
-
+          <div className="text-lg font-bold text-neutral">
+            {cartItem.sizing}
+          </div>
           <div className="mt-2 font-bold text-neutral">${cartItem.price}</div>
           <div className="flex mt-2 ml-1">
             {/* Adjust Quantity */}
