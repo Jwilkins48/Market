@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "daisyui": "^2.49.0",
     "firebase": "^9.16.0",
     "react": "^18.2.0",

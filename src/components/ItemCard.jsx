@@ -6,7 +6,12 @@ import { db } from "../../firebase.config";
 function ItemCard({ item, id, quantity, setQuantity }) {
   const params = useParams();
   const [loading, setLoading] = useState(true);
-  console.log(quantity);
+  const [size, setSize] = useState("SM");
+
+  const handleClick = (size) => {
+    setSize(size);
+    console.log(size);
+  };
 
   const handleAddToCart = async () => {
     const docRef = doc(db, "cartItems", params.id);
@@ -15,10 +20,17 @@ function ItemCard({ item, id, quantity, setQuantity }) {
 
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
+      await updateDoc(doc(db, "clothing", id), {
+        size: size,
+      });
+
       await setDoc(doc(db, "cartItems", id), item);
       setLoading(false);
       alert("added to cart!");
     } else {
+      await updateDoc(doc(db, "cartItems", id), {
+        size: size,
+      });
       await updateDoc(doc(db, "clothing", id), {
         quantity: quantity + 1,
       });
@@ -26,7 +38,6 @@ function ItemCard({ item, id, quantity, setQuantity }) {
       await updateDoc(doc(db, "cartItems", id), {
         quantity: quantity + 1,
       });
-      // console.log(`quantity: ${quantity + 1}`);
       setLoading(false);
     }
   };
@@ -42,10 +53,18 @@ function ItemCard({ item, id, quantity, setQuantity }) {
         <p>{item?.price}</p>
         <select>
           <option value="0">Size</option>
-          <option value="1">Small</option>
-          <option value="2">Medium</option>
-          <option value="3">Large</option>
-          <option value="4">XL</option>
+          <option onClick={() => handleClick("Small")} value="1">
+            Small
+          </option>
+          <option onClick={() => handleClick("Medium")} value="2">
+            Medium
+          </option>
+          <option onClick={() => handleClick("Large")} value="3">
+            Large
+          </option>
+          <option onClick={() => handleClick("XL")} value="4">
+            XL
+          </option>
         </select>
         <button onClick={() => handleAddToCart(params.id)}>Add To Cart</button>
       </div>

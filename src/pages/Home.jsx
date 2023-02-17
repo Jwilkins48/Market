@@ -4,6 +4,7 @@ import store from "../assets/clothes.jpg";
 import { collection, getDocs, query, limit, where } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import FeaturedCard from "../components/FeaturedCard";
+import "animate.css";
 
 function Home() {
   const [featured, setFeatured] = useState(null);
@@ -42,7 +43,7 @@ function Home() {
             alt="store"
           />
         </figure>
-        <div className="absolute lg:right-[22rem] bg-neutral w-[22rem] lg:w-[35rem] opacity-[.9] p-3 lg:p-10 rounded-lg shadow-3xl">
+        <div className="absolute lg:right-[17rem] bg-neutral w-[22rem] lg:w-[35rem] opacity-[.9] p-3 lg:p-10 rounded-lg shadow-3xl">
           <p className="text-red-100 text-4xl font-bold w-[20rem] lg:w-[31rem] mb-1 checkOut ">
             Find Your New Favorite Outfit In Daisies Closet!
           </p>
@@ -57,7 +58,10 @@ function Home() {
       </section>
 
       <section className="text-center">
-        <h1 className="mt-24 text-5xl text-neutral featured">Featured Items</h1>
+        <h1 className="mt-24 text-5xl text-neutral featured animate__animated animate__fadeInUp">
+          Featured Items
+        </h1>
+
         <div className="divider lg:w-[50rem] lg:mx-auto mx-8 my-14">
           <i className="fa-regular my-2 text-green-500 fa-heart" />
         </div>

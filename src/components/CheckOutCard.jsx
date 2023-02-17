@@ -7,6 +7,7 @@ function CheckOutCard({ cartItem, id, deleteCartItem }) {
   const [quantity, setQuantity] = useState(
     cartItem.quantity === 0 ? 1 : cartItem.quantity
   );
+  console.log(cartItem);
   //Add quantity and update in firebase
   const addQuantity = async () => {
     setQuantity(quantity + 1);

@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
 import { useState } from "react";
+import "animate.css";
 
 function App() {
   const [checkOut, setCheckOut] = useState(0);
