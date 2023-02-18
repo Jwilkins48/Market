@@ -16,7 +16,7 @@ import "animate.css";
 function App() {
   const [checkOut, setCheckOut] = useState(0);
   return (
-    <div className="app">
+    <div className="app relative">
       <BrowserRouter>
         <Navbar checkOut={checkOut} />
         <Routes>

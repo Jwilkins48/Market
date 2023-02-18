@@ -49,6 +49,19 @@ font-family: 'Unbounded', cursive; */
   filter: brightness(56%);
 }
 
+.imgs {
+  transition: 0.8s ease-in-out transform;
+  filter: brightness(80%);
+}
+.imgs:hover {
+  transform: scale(1.02);
+  filter: brightness(82%);
+}
+
+.line {
+  line-height: 43px;
+}
+
 .shop {
   font-size: 45px;
   font-family: "Montserrat", sans-serif;

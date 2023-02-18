@@ -36,7 +36,7 @@ function SignIn() {
   return (
     <>
       <div className="flex flex-col items-center justify-center h-[80vh]">
-        <div className="lg:bg-base-300 lg:p-12 lg:py-20 lg:shadow-2xl lg:rounded-xl animate__animated animate__fadeInUp">
+        <div className=" lg:p-12 lg:py-20 lg:rounded-xl">
           <form
             className="w-[22rem] bg-primary h-[20rem] rounded-lg border border-base-300 shadow-xl p-3 m-2 bg- flex flex-col"
             onSubmit={onSubmit}

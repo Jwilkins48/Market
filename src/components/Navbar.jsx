@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.config";
+import { useScrollPosition } from "../hooks/useScrollPosition";
 
 function Navbar() {
   const auth = getAuth();
   const navigate = useNavigate();
+  const scrollPosition = useScrollPosition();
   const [dropdown, setDropdown] = useState(false);
   const [cartDropdown, setCartDropdown] = useState(false);
+  const [onScroll, setOnScroll] = useState(false);
   const [cart, setCart] = useState(null);
 
   let cartTotal;
@@ -64,9 +67,15 @@ function Navbar() {
       (accumulator, currentValue) => accumulator + currentValue
     );
   }
-
+  console.log(scrollPosition);
   return (
-    <div className="navbar bg-primary shadow-2xl flex items-center justify-between">
+    <div
+      className={
+        scrollPosition <= 0
+          ? "navbar bg-primary shadow-2xl flex items-center justify-between opacity-1"
+          : "navbar bg-primary shadow-2xl flex items-center justify-between fixed z-20 opacity-[.9]"
+      }
+    >
       <div className="hidden sm:block md:block lg:block">
         <a
           onClick={() => navigate("/shop/mens/shirt")}

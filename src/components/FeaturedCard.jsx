@@ -1,12 +1,17 @@
-import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function FeaturedCard({ clothing, id }) {
   const navigate = useNavigate();
 
   return (
-    <div className="flex mb-10">
-      <div className="card mb-4 w-[30rem] h-[23rem] items-center  bg-[#f2f4f5] m-auto mt-4 shadow-2xl">
+    <div
+      data-aos="fade-up"
+      data-aos-offset="230"
+      data-aos-duration="1000"
+      data-aos-once="true"
+      className="flex mb-10"
+    >
+      <div className="card mb-4 w-[27rem] h-[22rem] items-center bg-[#f2f4f5] m-auto shadow-lg border border-blue-200">
         <figure
           onClick={() => navigate(`/shop/${id}`)}
           className="w-60 mb-16 cursor-pointer"

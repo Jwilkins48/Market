@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import store from "../assets/clothes.jpg";
-import { collection, getDocs, query, limit, where } from "firebase/firestore";
+import { collection, getDocs, query, limit } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import FeaturedCard from "../components/FeaturedCard";
 import "animate.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import modelOne from "../assets/model1.jpg";
+import modelTwo from "../assets/model2.jpg";
+import modelThree from "../assets/model3.jpg";
+import modelFour from "../assets/model4.jpg";
 
 function Home() {
   const [featured, setFeatured] = useState(null);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   useEffect(() => {
     const fetchFeatured = async () => {
@@ -43,11 +53,18 @@ function Home() {
             alt="store"
           />
         </figure>
+
         <div className="absolute lg:right-[17rem] bg-neutral w-[22rem] lg:w-[35rem] opacity-[.9] p-3 lg:p-10 rounded-lg shadow-3xl">
-          <p className="text-red-100 text-4xl font-bold w-[20rem] lg:w-[31rem] mb-1 checkOut ">
+          <p
+            data-aos-duration="1500"
+            data-aos="fade-left"
+            className="text-red-100 text-4xl font-bold w-[20rem] lg:w-[31rem] mb-1 checkOut "
+          >
             Find Your New Favorite Outfit In Daisies Closet!
           </p>
           <Link
+            data-aos-duration="1800"
+            data-aos="fade-up"
             data-theme="emerald"
             className="btn btn-primary h-14 mt-3 app shop"
             to="/shop/mens/shirt"
@@ -56,17 +73,23 @@ function Home() {
           </Link>
         </div>
       </section>
-
       <section className="text-center">
-        <h1 className="mt-24 text-5xl text-neutral featured animate__animated animate__fadeInUp">
-          Featured Items
-        </h1>
+        <div
+          data-aos="fade-up"
+          data-aos-offset="300"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
+          <h1 className="mt-24 text-5xl text-neutral featured ">
+            Featured Items
+          </h1>
 
-        <div className="divider lg:w-[50rem] lg:mx-auto mx-8 my-14">
-          <i className="fa-regular my-2 text-green-500 fa-heart" />
+          <div className="divider lg:w-[50rem] lg:mx-auto mx-8 my-14">
+            <i className="fa-regular my-2 text-green-500 fa-heart" />
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-16">
           {featured?.map((featured) => (
             <FeaturedCard
               InWishlist={false}
@@ -75,6 +98,110 @@ function Home() {
               key={featured.id}
             />
           ))}
+        </div>
+      </section>
+
+      <section className="my-32">
+        {/* MODEL ONE */}
+        <div className="mx-52 flex flex-col gap-5">
+          <div
+            data-aos="fade-left"
+            data-aos-offset="10"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            className="grid grid-cols-1 lg:grid-cols-2 items-center"
+          >
+            <figure>
+              <img
+                className="imgs w-[45rem] rounded-2xl"
+                src={modelOne}
+                alt="clothing model"
+              />
+            </figure>
+            <div>
+              <h1 className="text-5xl mb-8">Shop The Latest Fashion</h1>
+              <p className="text-3xl mt-2 line text-neutral">
+                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                amet purus gravida quis blandit. Habitant morbi tristique
+                senectus et netus. Habitant morbi tristique senectus et netus.
+              </p>
+            </div>
+          </div>
+          {/* MODEL TWO */}
+          <div
+            data-aos="fade-right"
+            data-aos-offset="10"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
+          >
+            <div className="mr-10">
+              <h1 className="text-5xl mb-8">Any Style Any Time</h1>
+              <p className="text-3xl mt-2 line text-neutral">
+                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                amet purus gravida quis blandit. Habitant morbi tristique
+                senectus et netus.
+              </p>
+            </div>
+            <figure>
+              <img
+                className="imgs w-[45rem] rounded-2xl ml-5"
+                src={modelThree}
+                alt="clothing model"
+              />
+            </figure>
+          </div>
+          {/* MODEL THREE */}
+          <div
+            data-aos="fade-left"
+            data-aos-offset="200"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
+          >
+            <figure>
+              <img
+                className="imgs w-[45rem] rounded-2xl"
+                src={modelTwo}
+                alt="clothing model"
+              />
+            </figure>
+            <div>
+              <h1 className="text-5xl mb-8">High Quality Clothing</h1>
+              <p className="text-3xl mt-2 line text-neutral">
+                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                amet purus gravida quis blandit.
+              </p>
+            </div>
+          </div>
+          {/* MODEL FOUR */}
+          <div
+            data-aos="fade-right"
+            data-aos-offset="250"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
+          >
+            <div>
+              <h1 className="text-5xl mb-8">Clothes For Any Occasion</h1>
+              <p className="text-3xl mt-2 line text-neutral">
+                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                amet purus gravida quis blandit. Habitant morbi tristique
+                senectus et netus!
+              </p>
+            </div>
+            <figure>
+              <img
+                className="imgs w-[45rem] rounded-2xl ml-5"
+                src={modelFour}
+                alt="clothing model"
+              />
+            </figure>
+          </div>
         </div>
       </section>
     </div>
