@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebase.config";
 import Card from "../components/Card";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import Footer from "../components/Footer";
 
 function Shop() {
   const [clothes, setClothes] = useState(null);
@@ -36,19 +37,25 @@ function Shop() {
   }, [params.gender, params.clothingItem]);
 
   return (
-    <div>
-      <header className="mt-5 mx-1 lg:w-[73rem] lg:mt-10 lg:m-auto">
+    <div className="">
+      <header className="mt-5 mx-1 lg:w-[73rem]  lg:m-auto">
         <div className="tabs">
           <Link
-            data-theme="corporate"
-            className="tab tab-lifted h-10 bg-secondary text-neutral mx-1 font-bold"
+            className={
+              params.gender === "mens"
+                ? "text-neutral mx-1 mt-10 text-2xl mr-5 font-bold underline"
+                : "text-neutral mx-1 mt-10 text-2xl mr-5"
+            }
             to="/shop/mens/shirt"
           >
             Men
           </Link>
           <Link
-            data-theme="corporate"
-            className="tab tab-lifted h-10 bg-secondary text-neutral font-bold"
+            className={
+              params.gender === "women"
+                ? "text-neutral mx-1 mt-10 text-2xl mr-5 font-bold underline"
+                : "text-neutral mx-1 mt-10 text-2xl"
+            }
             to="/shop/women/tops"
           >
             Women
@@ -58,32 +65,48 @@ function Shop() {
         <div>
           {params.gender === "mens" ? (
             <div className="">
-              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2 ml-1">
+              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
                 <Link
                   data-theme="emerald"
                   to="/shop/mens/shirt"
-                  className="btn btn-primary "
+                  className={
+                    params.clothingItem === "shirt"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Tops
                 </Link>
                 <Link
                   data-theme="emerald"
                   to="/shop/mens/bottoms"
-                  className="btn  btn-primary"
+                  className={
+                    params.clothingItem === "bottoms"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Bottoms
                 </Link>
                 <Link
                   data-theme="emerald"
                   to="/shop/mens/jacket"
-                  className="btn  btn-primary"
+                  className={
+                    params.clothingItem === "jacket"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Jackets & Coats
                 </Link>
                 <Link
                   data-theme="emerald"
                   to="/shop/mens/dress-shirt"
-                  className="btn btn-primary"
+                  className={
+                    params.clothingItem === "dress-shirt"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Button Down Shirts
                 </Link>
@@ -95,28 +118,44 @@ function Shop() {
                 <Link
                   data-theme="emerald"
                   to="/shop/women/tops"
-                  className="btn  btn-primary"
+                  className={
+                    params.clothingItem === "tops"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary "
+                  }
                 >
                   Tops
                 </Link>
                 <Link
                   data-theme="emerald"
                   to="/shop/women/bottoms"
-                  className="btn btn-primary"
+                  className={
+                    params.clothingItem === "bottoms"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Bottoms
                 </Link>
                 <Link
                   data-theme="emerald"
                   to="/shop/women/dresses"
-                  className="btn btn-primary"
+                  className={
+                    params.clothingItem === "dresses"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Dresses
                 </Link>
                 <Link
                   data-theme="emerald"
                   to="/shop/women/jacket"
-                  className="btn btn-primary"
+                  className={
+                    params.clothingItem === "jacket"
+                      ? "btn btn-primary underline"
+                      : "btn btn-primary"
+                  }
                 >
                   Jackets & Coats
                 </Link>
@@ -125,8 +164,8 @@ function Shop() {
           )}
         </div>
       </header>
-      <div className="divider lg:mx-40 mx-auto"></div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 items-center lg:w-[80rem] lg:m-auto">
+      <div className="divider lg:mx-80 mx-auto"></div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-center lg:w-[80rem] lg:m-auto pb-12">
         {clothes?.map((clothing) => (
           <Card
             InWishlist={false}
@@ -136,6 +175,7 @@ function Shop() {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

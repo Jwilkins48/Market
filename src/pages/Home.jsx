@@ -11,6 +11,7 @@ import modelOne from "../assets/model1.jpg";
 import modelTwo from "../assets/model2.jpg";
 import modelThree from "../assets/model3.jpg";
 import modelFour from "../assets/model4.jpg";
+import Footer from "../components/Footer";
 
 function Home() {
   const [featured, setFeatured] = useState(null);
@@ -45,7 +46,7 @@ function Home() {
 
   return (
     <div>
-      <section className="h:[16rem] lg:h-[40rem] background relative">
+      <section id="home" className="h:[16rem] lg:h-[40rem] background relative">
         <figure>
           <img
             className="img lg:w-full md:w-[50rem] h-[23rem] lg:h-auto"
@@ -103,7 +104,7 @@ function Home() {
 
       <section className="my-32">
         {/* MODEL ONE */}
-        <div className="mx-52 flex flex-col gap-5">
+        <div className="mx-48 flex flex-col gap-5">
           <div
             data-aos="fade-left"
             data-aos-offset="10"
@@ -113,7 +114,7 @@ function Home() {
           >
             <figure>
               <img
-                className="imgs w-[45rem] rounded-2xl"
+                className="imgs w-[44rem] rounded-2xl shadow-2xl"
                 src={modelOne}
                 alt="clothing model"
               />
@@ -136,7 +137,7 @@ function Home() {
             data-aos-once="true"
             className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
           >
-            <div className="mr-10">
+            <div className="mr-12">
               <h1 className="text-5xl mb-8">Any Style Any Time</h1>
               <p className="text-3xl mt-2 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
@@ -147,7 +148,7 @@ function Home() {
             </div>
             <figure>
               <img
-                className="imgs w-[45rem] rounded-2xl ml-5"
+                className="imgs w-[44rem] rounded-2xl ml-8 shadow-2xl"
                 src={modelThree}
                 alt="clothing model"
               />
@@ -163,7 +164,7 @@ function Home() {
           >
             <figure>
               <img
-                className="imgs w-[45rem] rounded-2xl"
+                className="imgs w-[44rem] rounded-2xl shadow-2xl"
                 src={modelTwo}
                 alt="clothing model"
               />
@@ -185,7 +186,7 @@ function Home() {
             data-aos-once="true"
             className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
           >
-            <div>
+            <div className="mr-16">
               <h1 className="text-5xl mb-8">Clothes For Any Occasion</h1>
               <p className="text-3xl mt-2 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
@@ -196,14 +197,21 @@ function Home() {
             </div>
             <figure>
               <img
-                className="imgs w-[45rem] rounded-2xl ml-5"
+                className="imgs w-[44rem] rounded-2xl ml-5 shadow-2xl"
                 src={modelFour}
                 alt="clothing model"
               />
             </figure>
           </div>
         </div>
+        <a
+          className="absolute bottom-40 right-40 flex items-center justify-center"
+          href="#home"
+        >
+          <i className="fa-solid fa-chevron-up btn  shadow-2xl bg-blue-300 rounded-3xl border-secondary hover:bg-blue-400 topBtn" />
+        </a>
       </section>
+      <Footer />
     </div>
   );
 }

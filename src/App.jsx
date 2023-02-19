@@ -12,6 +12,8 @@ import Wishlist from "./pages/Wishlist";
 import Profile from "./pages/Profile";
 import { useState } from "react";
 import "animate.css";
+import Newsletter from "./pages/Newsletter";
+import Footer from "./components/Footer";
 
 function App() {
   const [checkOut, setCheckOut] = useState(0);
@@ -21,6 +23,7 @@ function App() {
         <Navbar checkOut={checkOut} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Newsletter" element={<Newsletter />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route
@@ -33,7 +36,6 @@ function App() {
             element={<CheckOut setCheckOut={setCheckOut} checkOut={checkOut} />}
           />
           <Route path="/profile" element={<Profile />} />
-          //Must be signed in to view wishlist
           <Route path="/wishlist" element={<PrivateRoute />}>
             <Route path="/wishlist" element={<Wishlist />} />
           </Route>
