@@ -184,9 +184,9 @@ function Home() {
             data-aos-offset="250"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
+            className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10"
           >
-            <div className="mr-16">
+            <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
               <h1 className="text-5xl mb-8">Clothes For Any Occasion</h1>
               <p className="text-xl lg:text-3xl mt-2 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
@@ -197,7 +197,7 @@ function Home() {
             </div>
             <figure>
               <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:ml-5 shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
                 src={modelFour}
                 alt="clothing model"
               />
