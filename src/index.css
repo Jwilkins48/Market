@@ -53,6 +53,13 @@ font-family: 'Unbounded', cursive; */
   filter: brightness(56%);
 }
 
+.zoom {
+  transition: 0.5s ease-in-out transform;
+}
+.zoom:hover {
+  transform: scale(1.02);
+}
+
 .imgs {
   transition: 0.8s ease-in-out transform;
   filter: brightness(80%);

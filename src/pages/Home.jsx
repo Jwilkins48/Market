@@ -205,7 +205,7 @@ function Home() {
           </div>
         </div>
         <a
-          className="absolute bottom-40 right-40 flex items-center justify-center"
+          className="absolute bottom-28 right-32 flex items-center justify-center"
           href="#home"
         >
           <i className="fa-solid fa-chevron-up btn  shadow-2xl bg-blue-300 rounded-3xl border-secondary hover:bg-blue-400 topBtn" />

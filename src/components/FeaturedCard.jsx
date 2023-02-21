@@ -9,13 +9,11 @@ function FeaturedCard({ clothing, id }) {
       data-aos-offset="230"
       data-aos-duration="1000"
       data-aos-once="true"
-      className="flex mb-10"
+      className="flex mb-10 cursor-pointer"
+      onClick={() => navigate(`/shop/${id}`)}
     >
-      <div className="card mb-4 w-[27rem] h-[22rem] items-center bg-[#f2f4f5] m-auto shadow-lg border border-blue-200">
-        <figure
-          onClick={() => navigate(`/shop/${id}`)}
-          className="w-60 mb-16 cursor-pointer"
-        >
+      <div className="card zoom mb-4 w-[27rem] h-[22rem] items-center bg-[#f2f4f5] m-auto shadow-lg border border-blue-200">
+        <figure className="w-60 mb-16 ">
           <img
             className="mb-[-40px]"
             src={clothing.image[0]}

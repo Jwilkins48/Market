@@ -11,7 +11,6 @@ function Navbar() {
   const scrollPosition = useScrollPosition();
   const [dropdown, setDropdown] = useState(false);
   const [cartDropdown, setCartDropdown] = useState(false);
-  const [onScroll, setOnScroll] = useState(false);
   const [cart, setCart] = useState(null);
 
   let cartTotal;

@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebase.config";
 import Card from "../components/Card";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import Footer from "../components/Footer";
 
 function Shop() {

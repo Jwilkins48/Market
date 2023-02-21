@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { setDoc, getDoc, doc, serverTimestamp } from "firebase/firestore";
+import {
+  setDoc,
+  getDoc,
+  doc,
+  serverTimestamp,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../../firebase.config";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-function Card({ clothing, id, onDelete }) {
+function Card({ clothing, id }) {
   const auth = getAuth();
   const navigate = useNavigate();
   const [wishlist, setWishlist] = useState(false);
 
+  const deleteWishlist = async (id) => {
+    if (window.confirm("Remove from wishlist?")) {
+      await deleteDoc(doc(db, "wishlist", id));
+      console.log("Deleted");
+    }
+  };
+
   //Add to wishlist
   const onclick = async () => {
     if (wishlist === true) {
-      onDelete(id);
+      setWishlist(!wishlist);
+      deleteWishlist(id);
     } else {
       setWishlist(!wishlist);
       const dataCopy = {

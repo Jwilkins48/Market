@@ -22,7 +22,6 @@ function Item() {
       }
     };
     fetchClothes();
-    // console.log(item);
   }, [params.id]);
 
   return (
