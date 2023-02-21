@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 function Footer() {
   const navigate = useNavigate();
   return (
-    <footer className="footer lg:py-11 lg:pl-[25%] bg-base-200 text-base-content">
-      <div>
+    <footer className="footer lg:py-8 lg:pl-[25%] bg-base-200 text-base-content">
+      <div className="flex gap-8 mt-10">
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
 
@@ -13,9 +13,8 @@ function Footer() {
         <a className="link link-hover">Cookie policy</a>
       </div>
       <div>
-        <span className="footer-title">Newsletter</span>
         <div className="form-control w-80">
-          <label className="label"></label>
+          <span className="footer-title">Newsletter</span>
           <div className="relative">
             <input
               type="text"

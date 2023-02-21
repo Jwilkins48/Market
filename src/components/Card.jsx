@@ -56,7 +56,7 @@ function Card({ clothing, id }) {
 
   return (
     <div className="flex">
-      <div className="card mb-4  w-80 h-auto relative bg-[#f2f4f5] flex items-center m-auto mt-4 shadow-2xl">
+      <div className="card animate__animated animate__fadeIn mb-4  w-80 h-auto relative bg-[#f2f4f5] flex items-center m-auto mt-4 shadow-2xl">
         <button
           onClick={onclick}
           className="right-8 text-xl top-5 absolute text-blue-300"

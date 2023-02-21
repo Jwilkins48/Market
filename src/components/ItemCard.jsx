@@ -95,52 +95,75 @@ function ItemCard({ item, id, quantity, setQuantity }) {
   }, []);
 
   return (
-    <div>
-      <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 items-center justify-center m-auto lg:w-[50rem] lg:h-[85vh]">
-        <div>
-          <figure>
-            <img
-              className="lg:w-96 border border-green-100 rounded-lg shadow-xl"
-              src={item?.image[0]}
-              alt="selected item"
-            />
-          </figure>
-        </div>
-        <div className="flex flex-col lg:h-[36rem] relative">
-          {/* Wishlist btn */}
-          <button
-            onClick={onclick}
-            className="right-8 text-xl top-5 absolute text-rose-300"
-          >
-            {!wishlist ? (
-              <i className="fa-regular fa-heart" />
-            ) : (
-              <i className="fa-solid fa-heart" />
-            )}
-          </button>
-
-          <h3 className="text-4xl mt-40 text-neutral font-bold mb-3">
-            {item?.title}
-          </h3>
-          <p className="text-2xl text-neutral mb-3">${item?.price}</p>
+    <div id="page-container">
+      <div id="content-wrap">
+        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 items-center justify-center m-auto w-[21rem]  lg:w-[60rem] lg:h-[60vh] relative bg-[#eeeff3] rounded shadow-lg mt-3  lg:my-20 lg:px-16 ">
           <div>
-            <select
-              className="rounded shadow-lg badge-outline border lg:w-72 flex justify-between px-2 py-3  cursor-pointer text-lg"
-              onClick={(e) => handleClick(e.target.value)}
-            >
-              <option value="Size">Size</option>
-              <option value="Small">Small</option>
-              <option value="Medium">Medium</option>
-              <option value="Large">Large</option>
-              <option value="XL">XL</option>
-            </select>
+            <figure>
+              <img
+                className=" w-full m-auto lg:w-80 lg:ml-7 border border-indigo-100 rounded-lg shadow-xl"
+                src={item?.image[0]}
+                alt="selected item"
+              />
+            </figure>
           </div>
-          <button
-            className="btn lg:w-72 mt-3  shadow-lg btn-primary"
-            onClick={() => handleAddToCart(params.id)}
-          >
-            Add To Cart
-          </button>
+          <div className="flex flex-col lg:h-[36rem] relative">
+            {/* Wishlist btn */}
+            <button
+              onClick={onclick}
+              className="top-[-31rem] right-7 lg:right-2 lg:top-5 absolute text-2xl lg:text-xl text-neutral"
+            >
+              {!wishlist ? (
+                <i className="fa-regular fa-heart" />
+              ) : (
+                <i className="fa-solid fa-heart" />
+              )}
+            </button>
+
+            <h3 className="text-4xl pl-3 lg:pl-0 lg:mt-40 text-neutral font-bold mb-3">
+              {item?.title}
+            </h3>
+            <p className="text-2xl pl-3 lg:pl-0 text-neutral mb-5">
+              ${item?.price}
+            </p>
+            <div>
+              {/* DESKTOP SIZE START */}
+              <select
+                className=" hidden sm:block md:block lg:block xl:block rounded ml-3 lg:ml-0 shadow-lg badge-outline border lg:w-72 flex justify-between px-2 py-3  cursor-pointer text-lg bg-gray-100"
+                onClick={(e) => handleClick(e.target.value)}
+              >
+                <option value="Size">Size</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="XL">XL</option>
+              </select>
+              {/* END */}
+
+              {/* MOBILE SIZE START */}
+              <div className="flex ml-2 gap-3 pb-2 sm:hidden md:hidden lg:hidden xl:hidden">
+                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                  SM
+                </button>
+                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                  MD
+                </button>
+                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                  LG
+                </button>
+                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                  XL
+                </button>
+              </div>
+              {/* END */}
+            </div>
+            <button
+              className="btn w-40 my-3 lg:ml-0 ml-2 lg:w-72 lg:mt-3  shadow-lg bg-indigo-400 border-0"
+              onClick={() => handleAddToCart(params.id)}
+            >
+              Add To Cart
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

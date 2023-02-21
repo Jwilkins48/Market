@@ -84,3 +84,13 @@ font-family: 'Unbounded', cursive; */
 .topBtn:hover {
   transform: scale(1.1);
 }
+
+#page-container {
+  position: relative;
+  min-height: 90vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem; /* Footer height */
+  overflow: hidden;
+}
