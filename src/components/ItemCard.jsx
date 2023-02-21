@@ -142,23 +142,23 @@ function ItemCard({ item, id, quantity, setQuantity }) {
 
               {/* MOBILE SIZE START */}
               <div className="flex ml-2 gap-3 pb-2 sm:hidden md:hidden lg:hidden xl:hidden">
-                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
                   SM
                 </button>
-                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
                   MD
                 </button>
-                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
                   LG
                 </button>
-                <button className="btn bg-blue-300 border-0 text-white rounded-3xl">
+                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
                   XL
                 </button>
               </div>
               {/* END */}
             </div>
             <button
-              className="btn w-40 my-3 lg:ml-0 ml-2 lg:w-72 lg:mt-3  shadow-lg bg-indigo-400 border-0"
+              className="btn w-40 my-3 lg:ml-0 ml-2 lg:w-72 lg:mt-3 shadow-lg bg-indigo-400 border-0"
               onClick={() => handleAddToCart(params.id)}
             >
               Add To Cart

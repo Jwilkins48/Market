@@ -104,24 +104,24 @@ function Home() {
 
       <section className="my-32">
         {/* MODEL ONE */}
-        <div className="mx-48 flex flex-col gap-5">
+        <div className="ml-7 lg:mx-48 flex flex-col gap-5">
           <div
             data-aos="fade-left"
             data-aos-offset="10"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="grid grid-cols-1 lg:grid-cols-2 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 items-center w-96 lg:w-full"
           >
             <figure>
               <img
-                className="imgs w-[44rem] rounded-2xl shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl shadow-2xl mb-3 lg:mb-0"
                 src={modelOne}
                 alt="clothing model"
               />
             </figure>
             <div>
               <h1 className="text-5xl mb-8">Shop The Latest Fashion</h1>
-              <p className="text-3xl mt-2 line text-neutral">
+              <p className=" w-80 lg:w-full text-xl lg:text-3xl  mt-2 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit. Habitant morbi tristique
@@ -139,7 +139,7 @@ function Home() {
           >
             <div className="mr-12">
               <h1 className="text-5xl mb-8">Any Style Any Time</h1>
-              <p className="text-3xl mt-2 line text-neutral">
+              <p className="text-xl lg:text-3xl mt-2 mb-4 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit. Habitant morbi tristique
@@ -148,7 +148,7 @@ function Home() {
             </div>
             <figure>
               <img
-                className="imgs w-[44rem] rounded-2xl ml-8 shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl mr-6 mb-5 lg:mr-0 lg:mb-0 lg:ml-8 shadow-2xl"
                 src={modelThree}
                 alt="clothing model"
               />
@@ -164,14 +164,14 @@ function Home() {
           >
             <figure>
               <img
-                className="imgs w-[44rem] rounded-2xl shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl shadow-2xl"
                 src={modelTwo}
                 alt="clothing model"
               />
             </figure>
             <div>
               <h1 className="text-5xl mb-8">High Quality Clothing</h1>
-              <p className="text-3xl mt-2 line text-neutral">
+              <p className="text-xl lg:text-3xl mt-2 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit.
@@ -188,7 +188,7 @@ function Home() {
           >
             <div className="mr-16">
               <h1 className="text-5xl mb-8">Clothes For Any Occasion</h1>
-              <p className="text-3xl mt-2 line text-neutral">
+              <p className="text-xl lg:text-3xl mt-2 line text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit. Habitant morbi tristique
@@ -197,7 +197,7 @@ function Home() {
             </div>
             <figure>
               <img
-                className="imgs w-[44rem] rounded-2xl ml-5 shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:ml-5 shadow-2xl"
                 src={modelFour}
                 alt="clothing model"
               />
@@ -205,7 +205,7 @@ function Home() {
           </div>
         </div>
         <a
-          className="absolute bottom-28 right-32 flex items-center justify-center"
+          className="absolute bottom-12 right-32 flex items-center justify-center"
           href="#home"
         >
           <i className="fa-solid fa-chevron-up btn  shadow-2xl bg-blue-300 rounded-3xl border-secondary hover:bg-blue-400 topBtn" />
