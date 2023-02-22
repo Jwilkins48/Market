@@ -97,8 +97,8 @@ function ItemCard({ item, id, quantity, setQuantity }) {
   return (
     <div id="page-container">
       <div id="content-wrap">
-        <div className="grid gap-6 grid-cols-1 lg:grid-cols-2 items-center justify-center m-auto w-[21rem]  lg:w-[60rem] lg:h-[60vh] relative bg-[#eeeff3] rounded shadow-lg mt-3  lg:my-20 lg:px-16 ">
-          <div>
+        <div className=" mt-20 m-auto lg:my-32 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center justify-center w-[21rem] lg:w-[60rem] lg:h-[60vh] bg-[#eeeff3] relative rounded shadow-lg">
+          <div className="">
             <figure>
               <img
                 className=" w-full m-auto lg:w-80 lg:ml-7 border border-indigo-100 rounded-lg shadow-xl"
@@ -129,7 +129,7 @@ function ItemCard({ item, id, quantity, setQuantity }) {
             <div>
               {/* DESKTOP SIZE START */}
               <select
-                className=" hidden sm:block md:block lg:block xl:block rounded ml-3 lg:ml-0 shadow-lg badge-outline border lg:w-72 flex justify-between px-2 py-3  cursor-pointer text-lg bg-gray-100"
+                className=" hidden sm:block md:block lg:block xl:block rounded  lg:ml-0 shadow-lg badge-outline border lg:w-72 flex justify-between py-3 cursor-pointer text-lg bg-gray-100"
                 onClick={(e) => handleClick(e.target.value)}
               >
                 <option value="Size">Size</option>
@@ -141,7 +141,7 @@ function ItemCard({ item, id, quantity, setQuantity }) {
               {/* END */}
 
               {/* MOBILE SIZE START */}
-              <div className="flex ml-2 gap-3 pb-2 sm:hidden md:hidden lg:hidden xl:hidden">
+              <div className="flex ml-3 gap-3 pb-2 sm:hidden md:hidden lg:hidden xl:hidden">
                 <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
                   SM
                 </button>
@@ -158,7 +158,7 @@ function ItemCard({ item, id, quantity, setQuantity }) {
               {/* END */}
             </div>
             <button
-              className="btn w-40 my-3 lg:ml-0 ml-2 lg:w-72 lg:mt-3 shadow-lg bg-indigo-400 border-0"
+              className="btn w-40 my-3 lg:ml-0 ml-3 lg:w-72 lg:mt-3 shadow-lg bg-indigo-400 border-0"
               onClick={() => handleAddToCart(params.id)}
             >
               Add To Cart

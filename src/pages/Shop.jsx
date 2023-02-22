@@ -44,7 +44,7 @@ function Shop() {
   }, [params.gender, params.clothingItem]);
 
   return (
-    <div className="">
+    <div className="mt-12">
       <header className="mt-5 mx-1 lg:w-[73rem]  lg:m-auto">
         <div className="tabs">
           <Link

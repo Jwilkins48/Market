@@ -46,7 +46,7 @@ function Home() {
 
   return (
     <div>
-      <section id="home" className="h:[16rem] lg:h-[40rem] background relative">
+      <section id="home" className="h:[16rem] lg:h-[42rem] background relative">
         <figure>
           <img
             className="img lg:w-full md:w-[50rem] h-[23rem] lg:h-auto"
@@ -55,7 +55,7 @@ function Home() {
           />
         </figure>
 
-        <div className="absolute lg:right-[17rem] bg-neutral w-[22rem] lg:w-[35rem] opacity-[.9] p-3 lg:p-10 rounded-lg shadow-3xl">
+        <div className="absolute lg:right-[17rem] bg-neutral w-[22rem] lg:w-[35rem] opacity-[.9] p-3 lg:p-10 mt-16 rounded-lg shadow-3xl">
           <p
             data-aos-duration="1500"
             data-aos="fade-left"
@@ -102,26 +102,30 @@ function Home() {
         </div>
       </section>
 
-      <section className="my-32">
-        {/* MODEL ONE */}
-        <div className="ml-7 lg:mx-48 flex flex-col gap-5">
+      <section className="lg:my-32 w-[20rem] lg:w-full mx-auto">
+        <div className=" lg:mx-32  flex flex-col gap-5">
+          {/* MODEL ONE */}
           <div
             data-aos="fade-left"
             data-aos-offset="10"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="grid grid-cols-1 lg:grid-cols-2 items-center w-96 lg:w-full"
+            className="flex items-center justify-end flex-col md:flex-row lg:flex-row   mt-10 lg:ml-12"
           >
+            {/* md:ml-[-10rem] md:w-[38rem] */}
             <figure>
               <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl shadow-2xl mb-3 lg:mb-0"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
                 src={modelOne}
                 alt="clothing model"
               />
             </figure>
-            <div>
-              <h1 className="text-5xl mb-8">Shop The Latest Fashion</h1>
-              <p className=" w-80 lg:w-full text-xl lg:text-3xl  mt-2 line text-neutral">
+            <div className="w-[20rem] md:w-[30rem] lg:w-[50rem] lg:mr-40 md:ml-4">
+              <h1 className="text-3xl lg:text-5xl mt-5 lg:mt-0 lg:mb-8">
+                Shop The Latest Fashion
+              </h1>
+              <div className="divider lg:hidden"></div>
+              <p className=" w-80 lg:w-full text-xl lg:text-3xl mt-2 text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit. Habitant morbi tristique
@@ -135,11 +139,14 @@ function Home() {
             data-aos-offset="10"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
+            className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10 lg:ml-12"
           >
-            <div className="mr-12">
-              <h1 className="text-5xl mb-8">Any Style Any Time</h1>
-              <p className="text-xl lg:text-3xl mt-2 mb-4 line text-neutral">
+            <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
+              <h1 className="text-3xl lg:text-5xl mt-5 lg:mt-0 lg:mb-8">
+                Any Style Any Time
+              </h1>
+              <div className="divider lg:hidden"></div>
+              <p className="text-xl lg:text-3xl mt-2 mb-4 text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit. Habitant morbi tristique
@@ -148,7 +155,7 @@ function Home() {
             </div>
             <figure>
               <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl mr-6 mb-5 lg:mr-0 lg:mb-0 lg:ml-8 shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
                 src={modelThree}
                 alt="clothing model"
               />
@@ -160,18 +167,21 @@ function Home() {
             data-aos-offset="200"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="grid grid-cols-1 lg:grid-cols-2 items-center flex justify-end mt-10"
+            className="flex items-center justify-end flex-col lg:flex-row mt-10 lg:ml-12"
           >
             <figure>
               <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl shadow-2xl"
+                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
                 src={modelTwo}
                 alt="clothing model"
               />
             </figure>
-            <div>
-              <h1 className="text-5xl mb-8">High Quality Clothing</h1>
-              <p className="text-xl lg:text-3xl mt-2 line text-neutral">
+            <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
+              <h1 className="text-3xl lg:text-5xl mt-5 lg:mt-0 lg:mb-8">
+                High Quality Clothing
+              </h1>
+              <div className="divider lg:hidden"></div>
+              <p className="text-xl lg:text-3xl mt-2 text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit.
@@ -184,11 +194,14 @@ function Home() {
             data-aos-offset="250"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10"
+            className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10 mb-32 lg:mb-0 lg:ml-12"
           >
             <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
-              <h1 className="text-5xl mb-8">Clothes For Any Occasion</h1>
-              <p className="text-xl lg:text-3xl mt-2 line text-neutral">
+              <h1 className="text-3xl lg:text-5xl mt-5 lg:mt-0 lg:mb-8">
+                Clothes For Any Occasion
+              </h1>
+              <div className="divider lg:hidden"></div>
+              <p className="text-xl lg:text-3xl mt-2 text-neutral">
                 Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
                 iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
                 amet purus gravida quis blandit. Habitant morbi tristique
@@ -205,7 +218,7 @@ function Home() {
           </div>
         </div>
         <a
-          className="absolute bottom-12 right-32 flex items-center justify-center"
+          className="absolute bottom-52 right-12 lg:bottom-12 lg:right-32 flex items-center justify-center"
           href="#home"
         >
           <i className="fa-solid fa-chevron-up btn  shadow-2xl bg-blue-300 rounded-3xl border-secondary hover:bg-blue-400 topBtn" />

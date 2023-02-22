@@ -75,7 +75,7 @@ function CheckOut() {
   return (
     <div className=" h-[90vh]">
       <header>
-        <h1 className="font-bold text-3xl text-blue-400 text-center mt-8 mb-6 checkOut">
+        <h1 className="font-bold text-3xl text-blue-400 text-center mt-20 mb-6 checkOut">
           Check Out
         </h1>
         <div className="divider lg:w-[50rem] lg:mx-auto mx-8 my-6">

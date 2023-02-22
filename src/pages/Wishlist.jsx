@@ -54,7 +54,7 @@ function Wishlist() {
   };
 
   return (
-    <div>
+    <div className="mt-20">
       <header className="text-center mt-3 font-bold text-blue-400 wishlist">
         <h1>Wishlist</h1>
       </header>

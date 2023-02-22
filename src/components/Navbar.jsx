@@ -70,9 +70,7 @@ function Navbar() {
   return (
     <div
       className={
-        scrollPosition <= 0
-          ? "navbar bg-primary shadow-2xl flex items-center justify-between opacity-1"
-          : "navbar scrollNav bg-primary shadow-2xl flex items-center justify-between fixed z-20 opacity-[.9]"
+        "navbar scrollNav bg-primary shadow-2xl flex items-center justify-between fixed z-20 opacity-[.9] top-0"
       }
     >
       <div className="hidden sm:block md:block lg:block">
