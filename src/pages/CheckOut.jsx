@@ -9,13 +9,18 @@ import {
 import { db } from "../../firebase.config";
 import CheckOutCard from "../components/CheckOutCard";
 import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
 
 function CheckOut() {
   const [cart, setCart] = useState(null);
   const navigate = useNavigate();
+  const auth = getAuth();
   let cartTotal;
   let calcPrice;
 
+  const test = () => {
+    console.log("test");
+  };
   //Fetch items in cart
   useEffect(() => {
     const fetchCheckOut = async () => {
@@ -37,7 +42,7 @@ function CheckOut() {
     };
 
     fetchCheckOut();
-  }, []);
+  }, [test]);
 
   //Delete from cart
   const deleteCartItem = async (id) => {

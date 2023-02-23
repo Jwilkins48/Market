@@ -66,7 +66,7 @@ function Navbar() {
       (accumulator, currentValue) => accumulator + currentValue
     );
   }
-  console.log(scrollPosition);
+
   return (
     <div
       className={

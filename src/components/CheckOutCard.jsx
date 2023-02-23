@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../firebase.config";
 
 function CheckOutCard({ cartItem, id, deleteCartItem }) {
