@@ -42,7 +42,7 @@ function CheckOut() {
     };
 
     fetchCheckOut();
-  }, [test]);
+  }, []);
 
   //Delete from cart
   const deleteCartItem = async (id) => {
@@ -102,7 +102,7 @@ function CheckOut() {
           <div className="lg:w-[25rem] mx-5 rounded-2xl shadow-2xl bg-[#f2f4f5] mt-4 h-[21rem] relative my-0 mb-3">
             <div className="flex flex-col ml-5 mt-6">
               <p className="text-2xl ">
-                {cartTotal} {cart?.length === 1 ? "ITEM" : "ITEMS"}
+                {cartTotal} {cartTotal === 1 ? "ITEM" : "ITEMS"}
               </p>
               <div className="divider w-64 lg:w-80 my-3"></div>
               <div className="flex flex-col justify-end gap-2 ">

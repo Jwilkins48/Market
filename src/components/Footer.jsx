@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function Footer() {
   const navigate = useNavigate();
   return (
-    <footer className="footer pl-2 pb-4 lg:py-8 lg:pl-[25%] bg-base-200 text-base-content">
+    <footer className="footer pl-2 pb-4 lg:py-8 lg:pl-[25%] bg-base-200 text-base-content ">
       <div className="flex gap-6 mx-auto mt-10 lg:mx-0">
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>

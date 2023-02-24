@@ -16,13 +16,11 @@ function ItemCard({ item, id, quantity, setQuantity }) {
   const params = useParams();
   const auth = getAuth();
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(false);
   const [size, setSize] = useState("SM");
   const [wishlist, setWishlist] = useState(false);
 
   const handleClick = async (size) => {
     setSize(size);
-    setOpen(!open);
     setLoading(false);
   };
 
@@ -45,11 +43,11 @@ function ItemCard({ item, id, quantity, setQuantity }) {
         size: size,
       });
       await updateDoc(doc(db, "clothing", id), {
-        quantity: quantity + 1,
+        quantity: quantity,
       });
 
       await updateDoc(doc(db, "cartItems", id), {
-        quantity: quantity + 1,
+        quantity: quantity,
       });
       setLoading(false);
     }
@@ -142,16 +140,28 @@ function ItemCard({ item, id, quantity, setQuantity }) {
 
               {/* MOBILE SIZE START */}
               <div className="flex ml-3 gap-3 pb-2 sm:hidden md:hidden lg:hidden xl:hidden">
-                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
+                <button
+                  onClick={() => handleClick("Small")}
+                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                >
                   SM
                 </button>
-                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
+                <button
+                  onClick={() => handleClick("Medium")}
+                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                >
                   MD
                 </button>
-                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
+                <button
+                  onClick={() => handleClick("Large")}
+                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                >
                   LG
                 </button>
-                <button className="btn bg-indigo-300 border-0 text-white rounded-3xl">
+                <button
+                  onClick={() => handleClick("XL")}
+                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                >
                   XL
                 </button>
               </div>

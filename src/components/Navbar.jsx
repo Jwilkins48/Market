@@ -29,6 +29,7 @@ function Navbar() {
   const onLogout = () => {
     auth.signOut();
     navigate("/");
+    alert("Signed Out!");
   };
 
   useEffect(() => {
@@ -126,9 +127,9 @@ function Navbar() {
             >
               {/* USER */}
 
-              <li onClick={() => navigate("/profile")}>
+              {/* <li onClick={() => navigate("/profile")}>
                 <a className="justify-between ">Profile</a>
-              </li>
+              </li> */}
               <li onClick={onLogout}>
                 <a>Logout</a>
               </li>

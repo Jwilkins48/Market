@@ -34,7 +34,7 @@ function CheckOutCard({ cartItem, id, deleteCartItem }) {
   }, [quantity]);
 
   return (
-    <div className="mx-5 lg:w-96 h-40 m-auto relative mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-evenly rounded-2xl shadow-2xl">
+    <div className="mx-5 lg:w-96 h-44 m-auto relative mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-evenly rounded-2xl shadow-2xl">
       <div>
         <button
           className="absolute top-2 right-5 opacity-[.45] hover:text-blue-400"
