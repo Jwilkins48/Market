@@ -9,33 +9,31 @@ import Item from "./pages/Item";
 import CheckOut from "./pages/CheckOut";
 import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
-import Profile from "./pages/Profile";
 import { useState } from "react";
 import "animate.css";
 import Newsletter from "./pages/Newsletter";
 import Footer from "./components/Footer";
 
 function App() {
-  const [checkOut, setCheckOut] = useState(0);
+  const [checkOut, setCheckOut] = useState(false);
   return (
     <div className="app relative">
       <BrowserRouter>
-        <Navbar checkOut={checkOut} />
+        <Navbar checkOut={checkOut} setCheckOut={setCheckOut} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Newsletter" element={<Newsletter />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/shop/:gender/:clothingItem" element={<Shop />} />
           <Route
-            path="/shop/:gender/:clothingItem"
-            element={<Shop checkOut={checkOut} setCheckOut={setCheckOut} />}
+            path="/shop/:id"
+            element={<Item checkOut={checkOut} setCheckOut={setCheckOut} />}
           />
-          <Route path="/shop/:id" element={<Item />} />
           <Route
             path="/check-out"
             element={<CheckOut setCheckOut={setCheckOut} checkOut={checkOut} />}
           />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/wishlist" element={<PrivateRoute />}>
             <Route path="/wishlist" element={<Wishlist />} />
           </Route>

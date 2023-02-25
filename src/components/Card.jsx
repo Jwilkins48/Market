@@ -19,6 +19,8 @@ function Card({ clothing, id }) {
     if (window.confirm("Remove from wishlist?")) {
       await deleteDoc(doc(db, "wishlist", id));
       console.log("Deleted");
+    } else {
+      setWishlist(true);
     }
   };
 

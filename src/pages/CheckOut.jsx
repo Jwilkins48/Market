@@ -11,16 +11,15 @@ import CheckOutCard from "../components/CheckOutCard";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 
-function CheckOut() {
+function CheckOut({ checkOut, setCheckOut }) {
   const [cart, setCart] = useState(null);
   const navigate = useNavigate();
   const auth = getAuth();
   let cartTotal;
   let calcPrice;
 
-  const test = () => {
-    console.log("test");
-  };
+  const cartQuantity = cart?.map((item) => item.data.quantity);
+
   //Fetch items in cart
   useEffect(() => {
     const fetchCheckOut = async () => {
@@ -56,16 +55,18 @@ function CheckOut() {
       await updateDoc(doc(db, "clothing", id), {
         size: "Small",
       });
-
+      console.log(checkOut);
       const updatedCart = cart.filter((item) => item.id !== id);
       setCart(updatedCart);
       console.log("Deleted");
+    } else {
+      console.log("delete cancelled");
     }
   };
 
   if (cart?.length > 0) {
     //Total items in cart
-    const cartQuantity = cart?.map((item) => item.data.quantity);
+
     cartTotal = cartQuantity?.reduce(
       (accumulator, currentValue) => accumulator + currentValue
     );
@@ -92,6 +93,8 @@ function CheckOut() {
           <div className="">
             {cart?.map((cartItem) => (
               <CheckOutCard
+                checkOut={checkOut}
+                setCheckOut={setCheckOut}
                 deleteCartItem={deleteCartItem}
                 cartItem={cartItem.data}
                 id={cartItem.id}

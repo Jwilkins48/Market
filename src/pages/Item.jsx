@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../../firebase.config";
 import { collection, getDoc, doc, getDocs } from "firebase/firestore";
 import ItemCard from "../components/ItemCard";
-function Item() {
+function Item({ checkOut, setCheckOut }) {
   const params = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,6 +27,8 @@ function Item() {
   return (
     <div>
       <ItemCard
+        checkOut={checkOut}
+        setCheckOut={setCheckOut}
         item={item}
         quantity={quantity}
         setQuantity={setQuantity}

@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
 
-function CheckOutCard({ cartItem, id, deleteCartItem }) {
+function CheckOutCard({ cartItem, id, deleteCartItem, checkOut, setCheckOut }) {
   //displayed quantity
   const [quantity, setQuantity] = useState(
     cartItem.quantity === 0 ? 1 : cartItem.quantity

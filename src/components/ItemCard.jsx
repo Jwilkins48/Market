@@ -12,7 +12,7 @@ import { db } from "../../firebase.config";
 import Footer from "../components/Footer";
 import { getAuth } from "firebase/auth";
 
-function ItemCard({ item, id, quantity, setQuantity }) {
+function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
   const params = useParams();
   const auth = getAuth();
   const [loading, setLoading] = useState(true);
@@ -31,11 +31,13 @@ function ItemCard({ item, id, quantity, setQuantity }) {
 
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
+      setCheckOut((prevCheckOut) => prevCheckOut + 1);
       const copy = {
         ...item,
         sizing: size,
       };
       await setDoc(doc(db, "cartItems", id), copy);
+
       setLoading(false);
       alert("added to cart!");
     } else {
@@ -49,6 +51,7 @@ function ItemCard({ item, id, quantity, setQuantity }) {
       await updateDoc(doc(db, "cartItems", id), {
         quantity: quantity,
       });
+      setCheckOut((prevCheckOut) => prevCheckOut + 1);
       setLoading(false);
     }
   };

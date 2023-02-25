@@ -5,13 +5,14 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 
-function Navbar() {
+function Navbar({ checkOut, setCheckOut }) {
   const auth = getAuth();
   const navigate = useNavigate();
   const scrollPosition = useScrollPosition();
   const [dropdown, setDropdown] = useState(false);
   const [cartDropdown, setCartDropdown] = useState(false);
   const [cart, setCart] = useState(null);
+  const [cartAmount, setCartAmount] = useState(false);
 
   let cartTotal;
   let calcPrice;
@@ -46,6 +47,8 @@ function Navbar() {
           });
         });
         setCart(cart);
+        cart?.length > 0 ? setCheckOut(true) : setCheckOut(false);
+        console.log(cartAmount);
       } catch (error) {
         console.log(error);
       }
@@ -53,20 +56,6 @@ function Navbar() {
 
     fetchCheckOut();
   }, []);
-
-  if (cart?.length > 0) {
-    calcPrice = cart?.reduce(
-      (a, v) => (a = a + v.data.price * v.data.quantity),
-      0
-    );
-
-    //Total cart items with quantity
-    const cartQuantities = cart?.map((item) => item.data.quantity);
-
-    cartTotal = cartQuantities?.reduce(
-      (accumulator, currentValue) => accumulator + currentValue
-    );
-  }
 
   return (
     <div
@@ -179,9 +168,8 @@ function Navbar() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              {/* CHANGE TO CHECKOUT LENGTH  */}
               <span className="badge badge-sm indicator-item">
-                {cartTotal > 0 ? cartTotal : 0}
+                {checkOut ? "!" : 0}
               </span>
             </div>
           </label>
