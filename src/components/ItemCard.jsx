@@ -31,13 +31,12 @@ function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
 
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
-      setCheckOut((prevCheckOut) => prevCheckOut + 1);
       const copy = {
         ...item,
         sizing: size,
       };
       await setDoc(doc(db, "cartItems", id), copy);
-
+      setCheckOut(true);
       setLoading(false);
       alert("added to cart!");
     } else {
@@ -51,7 +50,7 @@ function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
       await updateDoc(doc(db, "cartItems", id), {
         quantity: quantity,
       });
-      setCheckOut((prevCheckOut) => prevCheckOut + 1);
+      setCheckOut(true);
       setLoading(false);
     }
   };
@@ -59,7 +58,10 @@ function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
   const deleteWishlist = async (id) => {
     if (window.confirm("Remove from wishlist?")) {
       await deleteDoc(doc(db, "wishlist", id));
+
       console.log("Deleted");
+    } else {
+      console.log("Not deleted");
     }
   };
 
@@ -170,6 +172,23 @@ function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
               </div>
               {/* END */}
             </div>
+
+            {/* <div className="text-lg font-bold text-neutral border border-primary flex justify-around w-24">
+              <div
+                onClick={minusQuantity}
+                className="border-r border-primary text-sm px-1 pr-3 w-6 flex justify-center items-center cursor-pointer"
+              >
+                <i className="fa-solid fa-minus" />
+              </div>
+              <p>{quantity}</p>
+              <div
+                onClick={addQuantity}
+                className="border-l border-primary text-sm px-1 pl-2 w-6 flex justify-center items-center cursor-pointer"
+              >
+                <i className="fa-solid fa-plus" />
+              </div>
+            </div> */}
+
             <button
               className="btn w-40 my-3 lg:ml-0 ml-3 lg:w-72 lg:mt-3 shadow-lg bg-indigo-400 border-0"
               onClick={() => handleAddToCart(params.id)}

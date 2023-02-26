@@ -13,6 +13,7 @@ function Navbar({ checkOut, setCheckOut }) {
   const [cartDropdown, setCartDropdown] = useState(false);
   const [cart, setCart] = useState(null);
   const [cartAmount, setCartAmount] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   let cartTotal;
   let calcPrice;
@@ -48,7 +49,6 @@ function Navbar({ checkOut, setCheckOut }) {
         });
         setCart(cart);
         cart?.length > 0 ? setCheckOut(true) : setCheckOut(false);
-        console.log(cartAmount);
       } catch (error) {
         console.log(error);
       }
@@ -150,7 +150,7 @@ function Navbar({ checkOut, setCheckOut }) {
         {/* SHOPPING CART */}
         <div
           className="dropdown dropdown-end"
-          onClick={() => setCartDropdown(!cartDropdown)}
+          onClick={() => handleClick("/check-out")}
         >
           <label tabIndex={0} className="btn btn-ghost btn-circle text-accent">
             <div className="indicator ">
@@ -169,35 +169,10 @@ function Navbar({ checkOut, setCheckOut }) {
                 />
               </svg>
               <span className="badge badge-sm indicator-item">
-                {checkOut ? "!" : 0}
+                {checkOut > 0 ? "!" : 0}
               </span>
             </div>
           </label>
-          <div
-            tabIndex={0}
-            className={
-              cartDropdown
-                ? "mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
-                : "hidden"
-            }
-          >
-            <div className="card-body">
-              {/* CHANGE TO CHECKOUT ITEM LENGTH/PRICE  */}
-              <span className="font-bold text-lg">
-                {" "}
-                {cartTotal} {cartTotal === 1 ? "ITEM" : "ITEMS"}
-              </span>
-              <span className="text-info">Subtotal: ${calcPrice}</span>
-              <div className="card-actions">
-                <button
-                  onClick={() => handleClick("/check-out")}
-                  className="btn btn-primary btn-block"
-                >
-                  View cart
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

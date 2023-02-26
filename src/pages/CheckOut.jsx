@@ -18,8 +18,6 @@ function CheckOut({ checkOut, setCheckOut }) {
   let cartTotal;
   let calcPrice;
 
-  const cartQuantity = cart?.map((item) => item.data.quantity);
-
   //Fetch items in cart
   useEffect(() => {
     const fetchCheckOut = async () => {
@@ -58,6 +56,7 @@ function CheckOut({ checkOut, setCheckOut }) {
       console.log(checkOut);
       const updatedCart = cart.filter((item) => item.id !== id);
       setCart(updatedCart);
+      updatedCart?.length === 0 ? setCheckOut(false) : setCheckOut(true);
       console.log("Deleted");
     } else {
       console.log("delete cancelled");
@@ -66,11 +65,10 @@ function CheckOut({ checkOut, setCheckOut }) {
 
   if (cart?.length > 0) {
     //Total items in cart
-
+    const cartQuantity = cart?.map((item) => item.data.quantity);
     cartTotal = cartQuantity?.reduce(
       (accumulator, currentValue) => accumulator + currentValue
     );
-
     //Total price
     calcPrice = cart?.reduce(
       (a, v) => (a = a + v.data.price * v.data.quantity),
@@ -114,7 +112,10 @@ function CheckOut({ checkOut, setCheckOut }) {
                 <p>Tax: $0.00</p>
                 <div className="divider w-32 my-0"></div>
                 <h1 className="checkOut mt-1">Total: ${calcPrice}</h1>
-                <button className="btn bg-blue-200 hover:bg-blue-300 border-0 mr-5 text-blue-500 checkOut">
+                <button
+                  onClick={() => navigate("/orderPlaced")}
+                  className="btn bg-blue-200 hover:bg-blue-300 border-0 mr-5 text-blue-500 checkOut"
+                >
                   PLACE ORDER
                 </button>
               </div>

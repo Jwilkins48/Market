@@ -44,14 +44,14 @@ function Shop() {
   }, [params.gender, params.clothingItem]);
 
   return (
-    <div className="mt-12">
+    <div className="mt-16">
       <header className="mt-5 mx-1 lg:w-[73rem]  lg:m-auto">
         <div className="tabs">
           <Link
             className={
               params.gender === "mens"
-                ? "text-neutral mx-1 mt-10 text-2xl mr-5 font-bold underline"
-                : "text-neutral mx-1 mt-10 text-2xl mr-5"
+                ? "text-neutral mt-10 text-[30px] mr-5 font-bold underline"
+                : "text-neutralm t-10 text-[30px] mr-5"
             }
             to="/shop/mens/shirt"
           >
@@ -60,8 +60,8 @@ function Shop() {
           <Link
             className={
               params.gender === "women"
-                ? "text-neutral mx-1 mt-10 text-2xl mr-5 font-bold underline"
-                : "text-neutral mx-1 mt-10 text-2xl"
+                ? "text-neutral mt-10 text-[30px] mr-5 font-bold underline"
+                : "text-neutral  mt-10 text-[30px]"
             }
             to="/shop/women/tops"
           >
@@ -72,47 +72,43 @@ function Shop() {
         <div>
           {params.gender === "mens" ? (
             <div className="">
-              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
+              <ul className="grid grid-cols-4 lg:flex items-center gap-5 mt-5">
                 <Link
-                  data-theme="emerald"
                   to="/shop/mens/shirt"
                   className={
                     params.clothingItem === "shirt"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Tops
                 </Link>
                 <Link
-                  data-theme="emerald"
                   to="/shop/mens/bottoms"
                   className={
                     params.clothingItem === "bottoms"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Bottoms
                 </Link>
                 <Link
-                  data-theme="emerald"
                   to="/shop/mens/jacket"
                   className={
                     params.clothingItem === "jacket"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Jackets & Coats
                 </Link>
                 <Link
-                  data-theme="emerald"
                   to="/shop/mens/dress-shirt"
                   className={
                     params.clothingItem === "dress-shirt"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Button Down Shirts
@@ -121,47 +117,43 @@ function Shop() {
             </div>
           ) : (
             <div>
-              <ul className="grid grid-cols-4 lg:flex gap-2 mt-2">
+              <ul className="grid grid-cols-4 lg:flex items-center gap-5 mt-5">
                 <Link
-                  data-theme="emerald"
                   to="/shop/women/tops"
                   className={
                     params.clothingItem === "tops"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary "
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Tops
                 </Link>
                 <Link
-                  data-theme="emerald"
                   to="/shop/women/bottoms"
                   className={
                     params.clothingItem === "bottoms"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Bottoms
                 </Link>
                 <Link
-                  data-theme="emerald"
                   to="/shop/women/dresses"
                   className={
                     params.clothingItem === "dresses"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Dresses
                 </Link>
                 <Link
-                  data-theme="emerald"
                   to="/shop/women/jacket"
                   className={
                     params.clothingItem === "jacket"
-                      ? "btn btn-primary underline"
-                      : "btn btn-primary"
+                      ? "text-[21px] font-bold underline text-primary"
+                      : "text-[20px] text-neutral"
                   }
                 >
                   Jackets & Coats
@@ -171,7 +163,7 @@ function Shop() {
           )}
         </div>
       </header>
-      <div className="divider lg:mx-80 mx-auto"></div>
+      <div className="divider lg:mx-80 lg:mb-10 mx-auto"></div>
       <div className="grid grid-cols-1 lg:grid-cols-3 items-center lg:w-[80rem] lg:m-auto pb-12">
         {clothes?.map((clothing) => (
           <Card

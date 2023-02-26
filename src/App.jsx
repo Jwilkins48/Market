@@ -9,13 +9,18 @@ import Item from "./pages/Item";
 import CheckOut from "./pages/CheckOut";
 import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
-import { useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase.config";
+
 import "animate.css";
 import Newsletter from "./pages/Newsletter";
 import Footer from "./components/Footer";
+import { useEffect, useState } from "react";
+import OrderPlaced from "./pages/OrderPlaced";
 
 function App() {
   const [checkOut, setCheckOut] = useState(false);
+
   return (
     <div className="app relative">
       <BrowserRouter>
@@ -34,6 +39,7 @@ function App() {
             path="/check-out"
             element={<CheckOut setCheckOut={setCheckOut} checkOut={checkOut} />}
           />
+          <Route path="/orderPlaced" element={<OrderPlaced />} />
           <Route path="/wishlist" element={<PrivateRoute />}>
             <Route path="/wishlist" element={<Wishlist />} />
           </Route>
