@@ -3,51 +3,73 @@ import { useParams } from "react-router-dom";
 import {
   setDoc,
   getDoc,
+  getDocs,
   doc,
   updateDoc,
   serverTimestamp,
   deleteDoc,
+  collection,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
 import Footer from "../components/Footer";
 import { getAuth } from "firebase/auth";
 
-function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
+function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
   const params = useParams();
   const auth = getAuth();
   const [loading, setLoading] = useState(true);
   const [size, setSize] = useState("SM");
   const [wishlist, setWishlist] = useState(false);
 
+  //If item is in cart - match quantity
+  useEffect(() => {
+    const fetchClothes = async () => {
+      const itemRef = doc(db, "cartItems", params.id);
+      const itemSnap = await getDoc(itemRef);
+
+      if (itemSnap.exists()) {
+        setQuantity(itemSnap.data().amount);
+        setLoading(false);
+      } else {
+        console.log("no");
+        setLoading(false);
+      }
+    };
+    fetchClothes();
+  }, [params.id]);
+
+  //Size
   const handleClick = async (size) => {
     setSize(size);
     setLoading(false);
   };
 
+  //Quantity
+  const adjustQuantity = (amount) => {
+    setQuantity((quantity) => {
+      return quantity + amount;
+    });
+  };
+
+  //Add to cart
   const handleAddToCart = async () => {
     const docRef = doc(db, "cartItems", params.id);
     const docSnap = await getDoc(docRef);
-    setQuantity((prevCheckOut) => prevCheckOut + 1);
 
     //If item is in cart add quantity - else add to collection
     if (!docSnap.exists()) {
       const copy = {
         ...item,
         sizing: size,
+        amount: quantity,
       };
       await setDoc(doc(db, "cartItems", id), copy);
       setCheckOut(true);
       setLoading(false);
       alert("added to cart!");
     } else {
-      await updateDoc(doc(db, "cartItems", id), {
-        size: size,
-      });
-      await updateDoc(doc(db, "clothing", id), {
-        quantity: quantity,
-      });
-
-      await updateDoc(doc(db, "cartItems", id), {
+      console.log("In cart");
+      await updateDoc(doc(db, "cartItems", params.id), {
         quantity: quantity,
       });
       setCheckOut(true);
@@ -55,6 +77,7 @@ function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
     }
   };
 
+  //Delete
   const deleteWishlist = async (id) => {
     if (window.confirm("Remove from wishlist?")) {
       await deleteDoc(doc(db, "wishlist", id));
@@ -173,21 +196,21 @@ function ItemCard({ item, id, quantity, setQuantity, checkOut, setCheckOut }) {
               {/* END */}
             </div>
 
-            {/* <div className="text-lg font-bold text-neutral border border-primary flex justify-around w-24">
+            <div className="text-lg font-bold text-neutral border border-primary flex justify-around w-24">
               <div
-                onClick={minusQuantity}
+                onClick={() => adjustQuantity(-1)}
                 className="border-r border-primary text-sm px-1 pr-3 w-6 flex justify-center items-center cursor-pointer"
               >
                 <i className="fa-solid fa-minus" />
               </div>
               <p>{quantity}</p>
               <div
-                onClick={addQuantity}
+                onClick={() => adjustQuantity(1)}
                 className="border-l border-primary text-sm px-1 pl-2 w-6 flex justify-center items-center cursor-pointer"
               >
                 <i className="fa-solid fa-plus" />
               </div>
-            </div> */}
+            </div>
 
             <button
               className="btn w-40 my-3 lg:ml-0 ml-3 lg:w-72 lg:mt-3 shadow-lg bg-indigo-400 border-0"

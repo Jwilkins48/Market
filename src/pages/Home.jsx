@@ -121,7 +121,7 @@ function Home() {
       </section>
 
       <section className="lg:my-32 w-[20rem] lg:w-full mx-auto">
-        <div className=" lg:mx-32  flex flex-col gap-5">
+        <div className=" lg:mx-32 flex flex-col gap-5">
           {/* MODEL ONE */}
           <div
             data-aos="fade-left"
@@ -176,12 +176,14 @@ function Home() {
               />
             </figure>
           </div>
+
           {/* MODEL THREE */}
+
           <div
             data-aos="fade-left"
             data-aos-duration="1000"
             data-aos-once="true"
-            className="lg:flex items-center justify-end flex-col lg:flex-row mt-5"
+            className="flex items-center justify-end flex-col md:flex-row lg:flex-row mt-10 lg:ml-12"
           >
             <figure>
               <img

@@ -65,13 +65,13 @@ function CheckOut({ checkOut, setCheckOut }) {
 
   if (cart?.length > 0) {
     //Total items in cart
-    const cartQuantity = cart?.map((item) => item.data.quantity);
+    const cartQuantity = cart?.map((item) => item.data.amount);
     cartTotal = cartQuantity?.reduce(
       (accumulator, currentValue) => accumulator + currentValue
     );
     //Total price
     calcPrice = cart?.reduce(
-      (a, v) => (a = a + v.data.price * v.data.quantity),
+      (a, v) => (a = a + v.data.price * v.data.amount),
       0
     );
   }
