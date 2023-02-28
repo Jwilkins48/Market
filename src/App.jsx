@@ -11,7 +11,6 @@ import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase.config";
-
 import "animate.css";
 import Newsletter from "./pages/Newsletter";
 import Footer from "./components/Footer";

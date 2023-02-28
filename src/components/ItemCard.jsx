@@ -149,13 +149,30 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
             <h3 className="text-4xl pl-3 lg:pl-0 lg:mt-40 text-neutral font-bold mb-3">
               {item?.title}
             </h3>
-            <p className="text-2xl pl-3 lg:pl-0 text-neutral mb-5">
+            <p className="text-2xl pl-3 lg:pl-0 text-neutral mb-3">
               ${item?.price}
             </p>
+            {/* QUANTITY */}
+            <div className="text-lg font-bold text-neutral border border-primary flex justify-around w-24 mb-5 ml-3 lg:ml-0">
+              <div
+                onClick={() => adjustQuantity(-1)}
+                className="border-r border-primary text-sm px-1 pr-3 w-6 flex justify-center items-center cursor-pointer"
+              >
+                <i className="fa-solid fa-minus" />
+              </div>
+              <p>{quantity}</p>
+              <div
+                onClick={() => adjustQuantity(1)}
+                className="border-l border-primary text-sm px-1 pl-2 w-6 flex justify-center items-center cursor-pointer"
+              >
+                <i className="fa-solid fa-plus" />
+              </div>
+            </div>
+
             <div>
               {/* DESKTOP SIZE START */}
               <select
-                className=" hidden sm:block md:block lg:block xl:block rounded  lg:ml-0 shadow-lg badge-outline border lg:w-72 flex justify-between py-3 cursor-pointer text-lg bg-gray-100"
+                className=" hidden sm:block md:block lg:block xl:block rounded  lg:ml-0 shadow-lg badge-outline border lg:w-72 flex justify-between py-3 pl-2 cursor-pointer text-lg bg-gray-100"
                 onClick={(e) => handleClick(e.target.value)}
               >
                 <option value="Size">Size</option>
@@ -194,22 +211,6 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
                 </button>
               </div>
               {/* END */}
-            </div>
-
-            <div className="text-lg font-bold text-neutral border border-primary flex justify-around w-24">
-              <div
-                onClick={() => adjustQuantity(-1)}
-                className="border-r border-primary text-sm px-1 pr-3 w-6 flex justify-center items-center cursor-pointer"
-              >
-                <i className="fa-solid fa-minus" />
-              </div>
-              <p>{quantity}</p>
-              <div
-                onClick={() => adjustQuantity(1)}
-                className="border-l border-primary text-sm px-1 pl-2 w-6 flex justify-center items-center cursor-pointer"
-              >
-                <i className="fa-solid fa-plus" />
-              </div>
             </div>
 
             <button

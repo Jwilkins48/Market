@@ -21,24 +21,23 @@ function CheckOutCard({ cartItem, id, deleteCartItem, checkOut, setCheckOut }) {
         >
           <i className="fa-solid fa-xmark" />
         </button>
-        <figure
-          onClick={() => navigate(`/shop/${id}`)}
-          className="w-20 cursor-pointer"
-        >
+        <figure className="w-20 cursor-pointer">
           <img src={cartItem.image[0]} alt={`${cartItem.gender} clothing`} />
         </figure>
       </div>
 
       <div className=" justify-between mt-2">
-        <div className="ml-3 mb-2 w-40">
-          <div className="text-lg font-bold text-neutral">{cartItem.title}</div>
-          <div className="text-lg font-bold text-neutral">
-            {cartItem.sizing}
+        <div className="ml-3 mb-2 w-[10.5rem]">
+          <div className="text-[16px] underline font-bold text-neutral mb-1">
+            {cartItem.title}
           </div>
-          <div className="mt-2 font-bold text-neutral">${cartItem.price}</div>
-          <div className="flex mt-2 ml-1">
-            <p>Quantity: {quantity}</p>
+          <p className="font-bold text-neutral text-[15px]">
+            Quantity: <span className="text-blue-400">{quantity}</span>
+          </p>
+          <div className=" text-[16px] font-bold text-neutral">
+            Size: <span className="text-blue-400">{cartItem.sizing}</span>
           </div>
+          <div className=" font-bold text-neutral">${cartItem.price}</div>
         </div>
       </div>
     </div>
