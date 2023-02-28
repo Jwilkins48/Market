@@ -10,8 +10,9 @@ import { db } from "../../firebase.config";
 import CheckOutCard from "../components/CheckOutCard";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+import CheckOutCardEdit from "../components/CheckOutCardEdit";
 
-function CheckOut({ checkOut, setCheckOut }) {
+function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
   const [cart, setCart] = useState(null);
   const navigate = useNavigate();
   const auth = getAuth();
@@ -37,9 +38,11 @@ function CheckOut({ checkOut, setCheckOut }) {
         console.log(error);
       }
     };
+    console.log(checkOutEdit);
 
     fetchCheckOut();
-  }, []);
+  }, [checkOutEdit]);
+  console.log(checkOutEdit);
 
   //Delete from cart
   const deleteCartItem = async (id) => {
@@ -88,18 +91,37 @@ function CheckOut({ checkOut, setCheckOut }) {
       </header>
       {cart?.length > 0 ? (
         <div className="grid grid-cols-1  lg:grid-cols-2 w- lg:w-[50rem] m-auto gap:0 lg:gap-8">
-          <div className="">
-            {cart?.map((cartItem) => (
-              <CheckOutCard
-                checkOut={checkOut}
-                setCheckOut={setCheckOut}
-                deleteCartItem={deleteCartItem}
-                cartItem={cartItem.data}
-                id={cartItem.id}
-                key={cartItem.id}
-              />
-            ))}
-          </div>
+          {checkOutEdit ? (
+            <div>
+              {cart?.map((cartItem) => (
+                <CheckOutCardEdit
+                  setCheckOutEdit={setCheckOutEdit}
+                  checkOutEdit={checkOutEdit}
+                  checkOut={checkOut}
+                  setCheckOut={setCheckOut}
+                  deleteCartItem={deleteCartItem}
+                  cartItem={cartItem.data}
+                  id={cartItem.id}
+                  key={cartItem.id}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>
+              {cart?.map((cartItem) => (
+                <CheckOutCard
+                  setCheckOutEdit={setCheckOutEdit}
+                  checkOutEdit={checkOutEdit}
+                  checkOut={checkOut}
+                  setCheckOut={setCheckOut}
+                  deleteCartItem={deleteCartItem}
+                  cartItem={cartItem.data}
+                  id={cartItem.id}
+                  key={cartItem.id}
+                />
+              ))}
+            </div>
+          )}
           <div className="lg:w-[25rem] mx-5 rounded-2xl shadow-2xl bg-[#f2f4f5] mt-4 h-[21rem] relative my-0 mb-3">
             <div className="flex flex-col ml-5 mt-6">
               <p className="text-2xl ">

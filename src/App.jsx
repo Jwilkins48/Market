@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-import useLocalStorage from "./hooks/useLocalStorage";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -9,16 +8,14 @@ import Item from "./pages/Item";
 import CheckOut from "./pages/CheckOut";
 import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase.config";
 import "animate.css";
 import Newsletter from "./pages/Newsletter";
-import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import OrderPlaced from "./pages/OrderPlaced";
 
 function App() {
   const [checkOut, setCheckOut] = useState(false);
+  const [checkOutEdit, setCheckOutEdit] = useState(false);
 
   return (
     <div className="app relative">
@@ -36,7 +33,14 @@ function App() {
           />
           <Route
             path="/check-out"
-            element={<CheckOut setCheckOut={setCheckOut} checkOut={checkOut} />}
+            element={
+              <CheckOut
+                setCheckOut={setCheckOut}
+                checkOut={checkOut}
+                setCheckOutEdit={setCheckOutEdit}
+                checkOutEdit={checkOutEdit}
+              />
+            }
           />
           <Route path="/orderPlaced" element={<OrderPlaced />} />
           <Route path="/wishlist" element={<PrivateRoute />}>
