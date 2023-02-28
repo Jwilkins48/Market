@@ -78,7 +78,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
       0
     );
   }
-
+  console.log(cart[0].data.amount);
   return (
     <div className=" h-[90vh]">
       <header>
@@ -127,6 +127,9 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
               <p className="text-2xl ">
                 {cartTotal} {cartTotal === 1 ? "ITEM" : "ITEMS"}
               </p>
+
+              {/* <p>{cart[0].data.amount}</p>  */}
+
               <div className="divider w-64 lg:w-80 my-3"></div>
               <div className="flex flex-col justify-end gap-2 ">
                 <p>Subtotal: ${calcPrice}</p>
