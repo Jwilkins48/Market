@@ -7,7 +7,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
-import CheckOutCard from "../components/CheckOutCard";
+// import CheckOutCard from "../components/CheckOutCard";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import CheckOutCardEdit from "../components/CheckOutCardEdit";
@@ -38,11 +38,9 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
         console.log(error);
       }
     };
-    console.log(checkOutEdit);
 
     fetchCheckOut();
   }, [checkOutEdit]);
-  console.log(checkOutEdit);
 
   //Delete from cart
   const deleteCartItem = async (id) => {
@@ -78,7 +76,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
       0
     );
   }
-  console.log(cart[0].data.amount);
+
   return (
     <div className=" h-[90vh]">
       <header>
@@ -89,27 +87,70 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
           <i className="fa-regular text-blue-300 fa-heart" />
         </div>
       </header>
+
       {cart?.length > 0 ? (
         <div className="grid grid-cols-1  lg:grid-cols-2 w- lg:w-[50rem] m-auto gap:0 lg:gap-8">
-          {checkOutEdit ? (
+          {!checkOutEdit ? (
             <div>
               {cart?.map((cartItem) => (
-                <CheckOutCardEdit
-                  setCheckOutEdit={setCheckOutEdit}
-                  checkOutEdit={checkOutEdit}
-                  checkOut={checkOut}
-                  setCheckOut={setCheckOut}
-                  deleteCartItem={deleteCartItem}
-                  cartItem={cartItem.data}
-                  id={cartItem.id}
+                <div
                   key={cartItem.id}
-                />
+                  className="mx-5 lg:w-96 h-44 m-auto relative mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-evenly rounded-2xl shadow-2xl"
+                >
+                  <div>
+                    <button
+                      className="absolute top-2 right-10 opacity-[.45] hover:text-blue-400"
+                      onClick={() => {
+                        setCheckOutEdit(true);
+                        console.log(checkOutEdit);
+                      }}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      className="absolute top-2 right-5 opacity-[.45] hover:text-blue-400"
+                      onClick={() => deleteCartItem(cartItem.id)}
+                    >
+                      <i className="fa-solid fa-xmark" />
+                    </button>
+                    <figure className="w-20 cursor-pointer">
+                      <img
+                        src={cartItem?.data.image[0]}
+                        alt={`${cartItem?.data.gender} clothing`}
+                      />
+                    </figure>
+                  </div>
+
+                  <div className=" justify-between mt-2">
+                    <div className="ml-3 mb-2 w-[10.5rem]">
+                      <div className="text-[16px] underline font-bold text-neutral mb-1">
+                        {cartItem.data.title}
+                      </div>
+                      <p className="font-bold text-neutral text-[15px]">
+                        Quantity:{" "}
+                        <span className="text-primary ">
+                          {cartItem.data.amount}
+                        </span>
+                      </p>
+                      <div className=" text-[16px] font-bold text-neutral">
+                        Size:{" "}
+                        <span className="text-primary">
+                          {cartItem.data.sizing}
+                        </span>
+                      </div>
+                      <div className=" font-bold text-neutral">
+                        ${cartItem.data.price}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           ) : (
             <div>
               {cart?.map((cartItem) => (
-                <CheckOutCard
+                <CheckOutCardEdit
                   setCheckOutEdit={setCheckOutEdit}
                   checkOutEdit={checkOutEdit}
                   checkOut={checkOut}
