@@ -1,27 +1,11 @@
-import { useState, useEffect } from "react";
-import {
-  collection,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase.config";
-import { useNavigate } from "react-router-dom";
 
-function CheckOutCardEdit({
-  cartItem,
-  id,
-  deleteCartItem,
-  checkOut,
-  setCheckOut,
-  setCheckOutEdit,
-  checkOutEdit,
-}) {
+function CheckOutCardEdit({ cartItem, id, deleteCartItem, setCheckOutEdit }) {
   const [quantity, setQuantity] = useState(cartItem.amount);
   const [size, setSize] = useState(cartItem.sizing);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   //Quantity
   const changeQuantity = (num) => {
@@ -43,7 +27,7 @@ function CheckOutCardEdit({
   };
 
   return (
-    <div className="mx-5 lg:w-96 h-52 m-auto relative mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-evenly rounded-2xl shadow-2xl">
+    <div className="mx-5 lg:w-96 h-56 m-auto relative mt-4 mb-4 bg-[#f2f4f5] flex items-center justify-evenly rounded-2xl shadow-2xl">
       <div>
         <button
           className="absolute top-2 right-10 opacity-[.45] hover:text-blue-400"
@@ -131,7 +115,6 @@ function CheckOutCardEdit({
               </button>
             </div>
           </div>
-          {/* <div className=" font-bold text-neutral">${cartItem.price}</div> */}
         </div>
       </div>
     </div>

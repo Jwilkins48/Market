@@ -63,19 +63,76 @@ function Navbar({ checkOut, setCheckOut }) {
         "navbar scrollNav bg-primary shadow-2xl flex items-center justify-between fixed z-20 opacity-[.9] top-0"
       }
     >
-      <div className="hidden sm:block md:block lg:block">
-        <a
-          onClick={() => navigate("/shop/mens/shirt")}
-          className="btn btn-ghost normal-case text-accent text-lg"
-        >
-          Mens
-        </a>
-        <a
-          onClick={() => navigate("/shop/women/tops")}
-          className="btn btn-ghost normal-case text-accent text-lg"
-        >
-          Womens
-        </a>
+      <div className="hidden sm:block md:block lg:block ">
+        <div className="dropdown dropdown-hover">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost normal-case text-accent text-lg"
+          >
+            Mens
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu mt-1 bg-base-200 rounded-box w-52 app font-bold text-lg"
+          >
+            <li>
+              <a onClick={() => navigate("/shop/mens/shirt")} className=" ">
+                Tops
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate("/shop/mens/bottoms")} className=" ">
+                Bottoms
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate("/shop/mens/jacket")} className=" ">
+                Jackets & Coats
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => navigate("/shop/mens/dress-shirt")}
+                className=" "
+              >
+                Button Down Shirts
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="dropdown dropdown-hover">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost normal-case text-accent text-lg"
+          >
+            Womens
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu mt-1 bg-base-200 rounded-box w-52 app font-bold text-lg"
+          >
+            <li>
+              <a onClick={() => navigate("/shop/women/tops")} className=" ">
+                Tops
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate("/shop/women/bottoms")} className=" ">
+                Bottoms
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate("/shop/women/dresses")} className=" ">
+                Dresses
+              </a>
+            </li>
+            <li>
+              <a onClick={() => navigate("/shop/women/jacket")} className=" ">
+                Jackets & Coats
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div>

@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import Wishlist from "./pages/Wishlist";
 import "animate.css";
 import Newsletter from "./pages/Newsletter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import OrderPlaced from "./pages/OrderPlaced";
 
 function App() {

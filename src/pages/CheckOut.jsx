@@ -7,15 +7,12 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase.config";
-// import CheckOutCard from "../components/CheckOutCard";
 import { useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
 import CheckOutCardEdit from "../components/CheckOutCardEdit";
 
 function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
   const [cart, setCart] = useState(null);
   const navigate = useNavigate();
-  const auth = getAuth();
   let cartTotal;
   let calcPrice;
 
@@ -38,7 +35,6 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
         console.log(error);
       }
     };
-
     fetchCheckOut();
   }, [checkOutEdit]);
 
@@ -64,6 +60,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
     }
   };
 
+  //Display cart quantity
   if (cart?.length > 0) {
     //Total items in cart
     const cartQuantity = cart?.map((item) => item.data.amount);
@@ -80,11 +77,11 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
   return (
     <div className=" h-[90vh]">
       <header>
-        <h1 className="font-bold text-3xl text-blue-400 text-center mt-20 mb-6 checkOut">
+        <h1 className="font-bold text-3xl text-neutral text-center mt-24 mb-6 checkOut">
           Check Out
         </h1>
         <div className="divider lg:w-[50rem] lg:mx-auto mx-8 my-6">
-          <i className="fa-regular text-blue-300 fa-heart" />
+          <i className="fa-regular text-green-500 fa-heart" />
         </div>
       </header>
 
@@ -92,6 +89,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
         <div className="grid grid-cols-1  lg:grid-cols-2 w- lg:w-[50rem] m-auto gap:0 lg:gap-8">
           {!checkOutEdit ? (
             <div>
+              {/* MAIN CARD */}
               {cart?.map((cartItem) => (
                 <div
                   key={cartItem.id}
@@ -149,6 +147,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
             </div>
           ) : (
             <div>
+              {/* EDIT CARD */}
               {cart?.map((cartItem) => (
                 <CheckOutCardEdit
                   setCheckOutEdit={setCheckOutEdit}
@@ -169,18 +168,19 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
                 {cartTotal} {cartTotal === 1 ? "ITEM" : "ITEMS"}
               </p>
 
-              {/* <p>{cart[0].data.amount}</p>  */}
-
               <div className="divider w-64 lg:w-80 my-3"></div>
               <div className="flex flex-col justify-end gap-2 ">
                 <p>Subtotal: ${calcPrice}</p>
                 <p>Shipping: $0.00</p>
                 <p>Tax: $0.00</p>
                 <div className="divider w-32 my-0"></div>
-                <h1 className="checkOut mt-1">Total: ${calcPrice}</h1>
+                <h1 className="checkOut mt-1 text-neutral">
+                  Total: ${calcPrice}
+                </h1>
                 <button
+                  data-theme="corporate"
                   onClick={() => navigate("/orderPlaced")}
-                  className="btn bg-blue-200 hover:bg-blue-300 border-0 mr-5 text-blue-500 checkOut"
+                  className="btn btn-accent text-gray-100 rounded-lg border-0 mr-5 checkOut"
                 >
                   PLACE ORDER
                 </button>
