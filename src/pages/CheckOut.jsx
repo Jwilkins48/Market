@@ -76,8 +76,13 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
   console.log(cart);
   return (
     <div className=" h-[90vh]">
+      <div className="mt-20 ml-8 mb-2 lg:mt-28 lg:ml-20  font-bold opacity-[.8] text-lg text-neutral">
+        <button onClick={() => navigate("/shop/mens/shirt")}>
+          <i className="fa-solid fa-angle-left"></i> Back To Shop
+        </button>
+      </div>
       <header>
-        <h1 className="font-bold text-3xl text-neutral text-center mt-24 mb-6 checkOut">
+        <h1 className="font-bold text-3xl text-neutral text-center mb-6 checkOut">
           Check Out
         </h1>
         <div className="divider lg:w-[50rem] lg:mx-auto mx-8 my-6">

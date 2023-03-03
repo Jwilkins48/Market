@@ -136,7 +136,7 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
   return (
     <div id="page-container">
       <div id="content-wrap">
-        <div className=" mt-20 m-auto lg:my-32 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center justify-center w-[21rem] lg:w-[60rem] lg:h-[60vh] bg-[#eeeff3] relative rounded shadow-lg">
+        <div className=" m-auto lg:my-12 lg:px-16 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center justify-center w-[21rem] lg:w-[60rem] lg:h-[60vh] bg-[#eeeff3] relative rounded shadow-lg">
           <div className="">
             <figure>
               <img

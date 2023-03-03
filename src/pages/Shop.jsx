@@ -14,6 +14,7 @@ import Footer from "../components/Footer";
 
 function Shop() {
   const [clothes, setClothes] = useState(null);
+  const [dropDownMen, setDropDownMen] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const params = useParams();
 
@@ -60,40 +61,94 @@ function Shop() {
               Men
             </Link>
             <button
+              onClick={() => setDropDownMen(!dropDownMen)}
+              className="sm:hidden md:hidden lg:hidden"
+            >
+              <i
+                className={
+                  params.gender === "mens"
+                    ? "fa-solid fa-chevron-down ml-2 cursor-pointer text-gray-500"
+                    : "hidden"
+                }
+              />
+            </button>
+
+            <div
+              className={
+                dropDownMen
+                  ? "h-40 bg-gray-200 absolute top-11 z-10 w-48 rounded-xl shadow-xl ml-[-5px]"
+                  : "hidden"
+              }
+            >
+              <ul className="p-2">
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/mens/shirt">Shirts</a>
+                </li>
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/mens/bottoms">Bottoms</a>
+                </li>
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/mens/jacket">Jackets & Coats</a>
+                </li>
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/mens/dress-shirt">Button Downs</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className=" mt-10 relative">
+            <Link
+              className={
+                params.gender === "women"
+                  ? "text-neutral mt-10 text-[30px] font-bold underline"
+                  : "text-neutral  mt-10 text-[30px]"
+              }
+              to="/shop/women/tops"
+            >
+              Women
+            </Link>
+
+            <button
               onClick={() => setDropDown(!dropDown)}
               className="sm:hidden md:hidden lg:hidden"
             >
-              <i className="fa-solid fa-chevron-down ml-2 cursor-pointer text-gray-500" />
+              <i
+                className={
+                  params.gender === "women"
+                    ? "fa-solid fa-chevron-down ml-2 cursor-pointer text-gray-500"
+                    : "hidden"
+                }
+              />
             </button>
 
             <div
               className={
                 dropDown
-                  ? "h-40 bg-accent absolute top-10 z-10 w-48 rounded-xl shadow-xl"
+                  ? "h-40 bg-gray-200 absolute top-11 z-10 w-48 rounded-xl shadow-xl ml-[-5px]"
                   : "hidden"
               }
             >
-              <ul>
-                <li>Shirts</li>
-                <li>Bottoms</li>
-                <li>Jackets & Coats</li>
-                <li>Button Downs</li>
+              <ul className="p-2">
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/women/tops">Tops</a>
+                </li>
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/women/bottoms">Bottoms</a>
+                </li>
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/women/dresses">Dresses</a>
+                </li>
+                <li className="pb-2 text-xl font-bold text-primary hover:text-green-500">
+                  <a href="/shop/women/jacket">Jackets & Coats</a>
+                </li>
               </ul>
             </div>
           </div>
-          <Link
-            className={
-              params.gender === "women"
-                ? "text-neutral mt-10 text-[30px] mr-5 font-bold underline"
-                : "text-neutral  mt-10 text-[30px]"
-            }
-            to="/shop/women/tops"
-          >
-            Women
-          </Link>
         </div>
         <div>
           {params.gender === "mens" ? (
+            // MEN
             <div className="hidden sm:block md:block lg:block xl:block">
               <ul className="flex items-center mt-2 gap-1 lg:gap-5 lg:mt-5 text-center">
                 <Link
@@ -144,18 +199,21 @@ function Shop() {
               </ul>
             </div>
           ) : (
-            <div>
-              <ul className="grid grid-cols-4 lg:flex items-center gap-5 mt-5 text-center">
+            // WOMEN
+            <div className="hidden sm:block md:block lg:block xl:block">
+              <ul className="flex items-center mt-2 gap-1 lg:gap-5 lg:mt-5 text-center">
                 <Link
                   to="/shop/women/tops"
                   className={
                     params.clothingItem === "tops"
-                      ? "lg:text-[21px] font-bold underline text-primary"
+                      ? "lg:text-[21px] font-bold underline text-gray-600"
                       : "lg:text-[20px] text-neutral"
                   }
                 >
                   Tops
                 </Link>
+                <i className="fa-solid fa-heart text-xs text-primary" />
+
                 <Link
                   to="/shop/women/bottoms"
                   className={
@@ -166,6 +224,8 @@ function Shop() {
                 >
                   Bottoms
                 </Link>
+                <i className="fa-solid fa-heart text-xs text-primary" />
+
                 <Link
                   to="/shop/women/dresses"
                   className={
@@ -176,6 +236,8 @@ function Shop() {
                 >
                   Dresses
                 </Link>
+                <i className="fa-solid fa-heart text-xs text-primary" />
+
                 <Link
                   to="/shop/women/jacket"
                   className={
@@ -186,6 +248,7 @@ function Shop() {
                 >
                   Jackets & Coats
                 </Link>
+                <i className="fa-solid fa-heart text-xs text-primary" />
               </ul>
             </div>
           )}

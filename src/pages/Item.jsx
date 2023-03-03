@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../../firebase.config";
 import { collection, getDoc, doc, getDocs } from "firebase/firestore";
 import ItemCard from "../components/ItemCard";
+
 function Item({ checkOut, setCheckOut }) {
+  const navigate = useNavigate();
   const params = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +27,13 @@ function Item({ checkOut, setCheckOut }) {
   }, [params.id]);
 
   return (
-    <div>
+    <div className="">
+      <div className="mt-20 ml-8 mb-2 lg:mt-32 lg:ml-20  font-bold opacity-[.8] text-lg text-neutral">
+        <button onClick={() => navigate("/shop/mens/shirt")}>
+          <i className="fa-solid fa-angle-left"></i> Back To Shop
+        </button>
+      </div>
+
       <ItemCard
         checkOut={checkOut}
         setCheckOut={setCheckOut}
