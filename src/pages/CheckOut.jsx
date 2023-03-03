@@ -73,7 +73,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
       0
     );
   }
-
+  console.log(cart);
   return (
     <div className=" h-[90vh]">
       <header>

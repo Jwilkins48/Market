@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 import { useParams } from "react-router-dom";
 import {
   setDoc,
@@ -20,6 +20,7 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
   const [loading, setLoading] = useState(true);
   const [size, setSize] = useState("SM");
   const [wishlist, setWishlist] = useState(false);
+  const newId = useId();
 
   //If item is in cart - match quantity
   useEffect(() => {
@@ -67,10 +68,22 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
       setCheckOut(true);
       setLoading(false);
       alert("added to cart!");
+    } else if (docSnap.exists() && docSnap.data().sizing !== size) {
+      console.log("Different Size");
+      const copy = {
+        ...item,
+        sizing: size,
+        amount: quantity,
+      };
+      await setDoc(doc(db, "cartItems", id), copy);
+      setCheckOut(true);
+      setLoading(false);
     } else {
       console.log("In cart");
+      console.log(docSnap.data().amount);
       await updateDoc(doc(db, "cartItems", params.id), {
-        quantity: quantity,
+        quantity: quantity + docSnap.data().amount,
+        amount: quantity + docSnap.data().amount,
       });
       setCheckOut(true);
       setLoading(false);
