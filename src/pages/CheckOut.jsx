@@ -41,6 +41,9 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
   //Delete from cart
   const deleteCartItem = async (id) => {
     if (window.confirm("Remove from cart?")) {
+      const updatedCart = cart.filter((item) => item.id !== id);
+      setCart(updatedCart);
+
       await deleteDoc(doc(db, "cartItems", id));
 
       await updateDoc(doc(db, "clothing", id), {
@@ -51,8 +54,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
         size: "Small",
       });
       console.log(checkOut);
-      const updatedCart = cart.filter((item) => item.id !== id);
-      setCart(updatedCart);
+
       updatedCart?.length === 0 ? setCheckOut(false) : setCheckOut(true);
       console.log("Deleted");
     } else {
@@ -76,7 +78,7 @@ function CheckOut({ checkOut, setCheckOut, checkOutEdit, setCheckOutEdit }) {
   console.log(cart);
   return (
     <div className=" h-[90vh]">
-      <div className="mt-20 ml-8 mb-2 lg:mt-28 lg:ml-20  font-bold opacity-[.8] text-lg text-neutral">
+      <div className="mt-20 ml-32 mb-2 lg:mt-28 lg:ml-20  font-bold opacity-[.8] text-lg text-neutral">
         <button onClick={() => navigate("/shop/mens/shirt")}>
           <i className="fa-solid fa-angle-left"></i> Back To Shop
         </button>

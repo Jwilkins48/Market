@@ -54,7 +54,7 @@ function Shop() {
               className={
                 params.gender === "mens"
                   ? "text-neutral mt-10 text-[30px] font-bold underline"
-                  : "text-neutralm t-10 text-[30px] "
+                  : "text-neutral mt-10 text-[30px] "
               }
               to="/shop/mens/shirt"
             >

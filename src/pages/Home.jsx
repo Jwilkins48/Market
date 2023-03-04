@@ -12,6 +12,8 @@ import modelTwo from "../assets/model2.jpg";
 import modelThree from "../assets/model3.jpg";
 import modelFour from "../assets/model4.jpg";
 import Footer from "../components/Footer";
+import Fade from "react-reveal/Fade";
+import Reveal from "react-reveal/Reveal";
 
 function Home() {
   const [featured, setFeatured] = useState(null);
@@ -123,114 +125,100 @@ function Home() {
       <section className="lg:my-32 w-[20rem] lg:w-full mx-auto">
         <div className=" lg:mx-32 flex flex-col gap-5">
           {/* MODEL ONE */}
-          <div
-            data-aos="fade-left"
-            data-aos-duration="1000"
-            data-aos-once="true"
-            className="flex items-center justify-end flex-col md:flex-row lg:flex-row   mt-10 lg:ml-12"
-          >
-            <figure>
-              <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
-                src={modelOne}
-                alt="clothing model"
-              />
-            </figure>
-            <div className="w-[20rem] md:w-[30rem] lg:w-[50rem] lg:mr-40 md:ml-4">
-              <h1 className="text-[28px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
-                Shop The Latest Fashion
-              </h1>
-              <div className="divider lg:hidden my-0"></div>
-              <p className=" w-80 lg:w-full text-lg lg:text-[26px] line mt-2 text-neutral">
-                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
-                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
-                amet purus gravida quis blandit. Habitant morbi tristique
-                senectus et netus. Habitant morbi tristique senectus et netus.
-              </p>
+          <Reveal effect="fadeInLeft" duration={2000}>
+            <div className="flex items-center justify-end flex-col md:flex-row lg:flex-row   mt-10 lg:ml-12">
+              <figure>
+                <img
+                  className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
+                  src={modelOne}
+                  alt="clothing model"
+                />
+              </figure>
+              <div className="w-[20rem] md:w-[30rem] lg:w-[50rem] lg:mr-40 md:ml-4">
+                <h1 className="text-[28px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
+                  Shop The Latest Fashion
+                </h1>
+                <div className="divider lg:hidden my-0"></div>
+                <p className=" w-80 lg:w-full text-lg lg:text-[26px] line mt-2 text-neutral">
+                  Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                  iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                  amet purus gravida quis blandit. Habitant morbi tristique
+                  senectus et netus. Habitant morbi tristique senectus et netus.
+                </p>
+              </div>
             </div>
-          </div>
+          </Reveal>
           {/* MODEL TWO */}
-          <div
-            data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-once="true"
-            className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10 lg:ml-12"
-          >
-            <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
-              <h1 className="text-[28px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
-                Any Style Any Time
-              </h1>
-              <div className="divider lg:hidden my-0"></div>
-              <p className="text-lg lg:text-[26px] line mt-2 mb-4 text-neutral">
-                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
-                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
-                amet purus gravida quis blandit. Habitant morbi tristique
-                senectus et netus.
-              </p>
+          <Reveal effect="fadeInRight" duration={2000}>
+            <div className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10 lg:ml-12">
+              <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
+                <h1 className="text-[28px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
+                  Any Style Any Time
+                </h1>
+                <div className="divider lg:hidden my-0"></div>
+                <p className="text-lg lg:text-[26px] line mt-2 mb-4 text-neutral">
+                  Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                  iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                  amet purus gravida quis blandit. Habitant morbi tristique
+                  senectus et netus.
+                </p>
+              </div>
+              <figure>
+                <img
+                  className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
+                  src={modelThree}
+                  alt="clothing model"
+                />
+              </figure>
             </div>
-            <figure>
-              <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
-                src={modelThree}
-                alt="clothing model"
-              />
-            </figure>
-          </div>
-
+          </Reveal>
           {/* MODEL THREE */}
-
-          <div
-            data-aos="fade-left"
-            data-aos-duration="1000"
-            data-aos-once="true"
-            className="flex items-center justify-end flex-col md:flex-row lg:flex-row mt-10 lg:ml-12"
-          >
-            <figure>
-              <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
-                src={modelTwo}
-                alt="clothing model"
-              />
-            </figure>
-            <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
-              <h1 className="text-[28px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
-                High Quality Clothing
-              </h1>
-              <div className="divider lg:hidden my-0"></div>
-              <p className="text-xl lg:text-[26px] line mt-2 text-neutral">
-                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
-                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
-                amet purus gravida quis blandit.
-              </p>
+          <Reveal effect="fadeInLeft" duration={2000}>
+            <div className="flex items-center justify-end flex-col md:flex-row lg:flex-row mt-10 lg:ml-12">
+              <figure>
+                <img
+                  className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
+                  src={modelTwo}
+                  alt="clothing model"
+                />
+              </figure>
+              <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
+                <h1 className="text-[28px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
+                  High Quality Clothing
+                </h1>
+                <div className="divider lg:hidden my-0"></div>
+                <p className="text-xl lg:text-[26px] line mt-2 text-neutral">
+                  Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                  iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                  amet purus gravida quis blandit.
+                </p>
+              </div>
             </div>
-          </div>
+          </Reveal>
           {/* MODEL FOUR */}
-          <div
-            data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-once="true"
-            className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10 mb-32 lg:mb-0 lg:ml-12"
-          >
-            <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
-              <h1 className="text-[26px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
-                Clothes For Any Occasion
-              </h1>
-              <div className="divider lg:hidden my-0"></div>
-              <p className="text-xl lg:text-[26px] line mt-2 text-neutral">
-                Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
-                iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
-                amet purus gravida quis blandit. Habitant morbi tristique
-                senectus et netus!
-              </p>
+          <Reveal effect="fadeInRight" duration={2000}>
+            <div className="flex items-center justify-end flex-col-reverse lg:flex-row mt-10 mb-32 lg:mb-0 lg:ml-12">
+              <div className="w-[20rem] lg:w-[50rem] lg:mr-40">
+                <h1 className="text-[26px] lg:text-5xl mt-8 lg:mt-0 lg:mb-8">
+                  Clothes For Any Occasion
+                </h1>
+                <div className="divider lg:hidden my-0"></div>
+                <p className="text-xl lg:text-[26px] line mt-2 text-neutral">
+                  Imperdiet dui accumsan sit amet nulla facilisi morbi tempus
+                  iaculis. Iaculis urna id volutpat lacus laoreet non. Magna sit
+                  amet purus gravida quis blandit. Habitant morbi tristique
+                  senectus et netus!
+                </p>
+              </div>
+              <figure>
+                <img
+                  className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
+                  src={modelFour}
+                  alt="clothing model"
+                />
+              </figure>
             </div>
-            <figure>
-              <img
-                className="imgs w-[22rem] lg:w-[44rem] rounded-2xl lg:mr-60 shadow-2xl"
-                src={modelFour}
-                alt="clothing model"
-              />
-            </figure>
-          </div>
+          </Reveal>
         </div>
         <a
           className="absolute bottom-52 right-12 lg:bottom-12 lg:right-32 flex items-center justify-center"

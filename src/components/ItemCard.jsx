@@ -20,7 +20,7 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
   const [loading, setLoading] = useState(true);
   const [size, setSize] = useState("SM");
   const [wishlist, setWishlist] = useState(false);
-  const newId = useId();
+  let newId = item?.title;
 
   //If item is in cart - match quantity
   useEffect(() => {
@@ -57,7 +57,11 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
     const docRef = doc(db, "cartItems", params.id);
     const docSnap = await getDoc(docRef);
 
+    const docRefDuplicate = doc(db, "cartItems", newId);
+    const docSnapDuplicate = await getDoc(docRefDuplicate);
+
     //If item is in cart add quantity - else add to collection
+    //NEW ITEM
     if (!docSnap.exists()) {
       const copy = {
         ...item,
@@ -68,16 +72,25 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
       setCheckOut(true);
       setLoading(false);
       alert("added to cart!");
+
+      //SAME ITEM DIFFERENT SIZE
     } else if (docSnap.exists() && docSnap.data().sizing !== size) {
       console.log("Different Size");
+      alert("added to cart!");
       const copy = {
         ...item,
         sizing: size,
         amount: quantity,
       };
-      await setDoc(doc(db, "cartItems", id), copy);
+      await setDoc(doc(db, "cartItems", newId), copy);
+      await updateDoc(doc(db, "cartItems", newId), {
+        quantity: quantity + docSnapDuplicate.data().amount,
+        amount: quantity + docSnapDuplicate.data().amount,
+      });
       setCheckOut(true);
       setLoading(false);
+
+      //SAME ITEM SAME SIZE
     } else {
       console.log("In cart");
       console.log(docSnap.data().amount);
@@ -200,25 +213,41 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
               <div className="flex ml-3 gap-3 pb-2 sm:hidden md:hidden lg:hidden xl:hidden">
                 <button
                   onClick={() => handleClick("Small")}
-                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  className={
+                    size === "Small"
+                      ? "btn bg-indigo-600 border-0 text-white rounded-3xl"
+                      : "btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  }
                 >
                   SM
                 </button>
                 <button
                   onClick={() => handleClick("Medium")}
-                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  className={
+                    size === "Medium"
+                      ? "btn bg-indigo-600 border-0 text-white rounded-3xl"
+                      : "btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  }
                 >
                   MD
                 </button>
                 <button
                   onClick={() => handleClick("Large")}
-                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  className={
+                    size === "Large"
+                      ? "btn bg-indigo-600 border-0 text-white rounded-3xl"
+                      : "btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  }
                 >
                   LG
                 </button>
                 <button
                   onClick={() => handleClick("XL")}
-                  className="btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  className={
+                    size === "XL"
+                      ? "btn bg-indigo-600 border-0 text-white rounded-3xl"
+                      : "btn bg-indigo-300 border-0 text-white rounded-3xl"
+                  }
                 >
                   XL
                 </button>

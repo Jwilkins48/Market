@@ -5,8 +5,8 @@ import Footer from "../components/Footer";
 function Newsletter() {
   return (
     <div className="h-screen flex items-center justify-center">
-      <div className="pb-28">
-        <div className="lg:w-[45rem] lg:h-[26rem] lg:flex lg:flex-col lg:justify-center gap-10 mx-4 rounded-lg p-5">
+      <div className="pb-28 ">
+        <div className="lg:w-[45rem] lg:h-[26rem] lg:flex lg:flex-col lg:justify-center gap-10 mx-4 rounded-lg p-5 border border-green-600 shadow-xl">
           <div className="">
             <h1 className="text-2xl lg:text-4xl text-gray-600 font-bold">
               SUBSCRIBED!
