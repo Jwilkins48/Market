@@ -12,6 +12,7 @@ import "animate.css";
 import Newsletter from "./pages/Newsletter";
 import { useState } from "react";
 import OrderPlaced from "./pages/OrderPlaced";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   const [checkOut, setCheckOut] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           <Route path="/Newsletter" element={<Newsletter />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/shop/:gender/:clothingItem" element={<Shop />} />
           <Route
             path="/shop/:id"

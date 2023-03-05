@@ -73,7 +73,7 @@ function Navbar({ checkOut, setCheckOut }) {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu mt-1 bg-base-200 rounded-box w-52 app font-bold text-lg"
+            className="dropdown-content menu bg-base-200 rounded-box w-52 app font-bold text-lg"
           >
             <li>
               <a onClick={() => navigate("/shop/mens/shirt")} className=" ">
@@ -109,7 +109,7 @@ function Navbar({ checkOut, setCheckOut }) {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu mt-1 bg-base-200 rounded-box w-52 app font-bold text-lg"
+            className="dropdown-content menu  bg-base-200 rounded-box w-52 app font-bold text-lg"
           >
             <li>
               <a onClick={() => navigate("/shop/women/tops")} className=" ">
