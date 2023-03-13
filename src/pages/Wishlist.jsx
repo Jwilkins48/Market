@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
   const [wishlist, setWishlist] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const auth = getAuth();
   useEffect(() => {
@@ -49,6 +50,7 @@ function Wishlist() {
 
       const updatedCart = wishlist.filter((item) => item.id !== id);
       setWishlist(updatedCart);
+      setLoading(false);
       console.log("Deleted");
     }
   };

@@ -3,20 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase.config";
-import { useScrollPosition } from "../hooks/useScrollPosition";
 
 function Navbar({ checkOut, setCheckOut }) {
   const auth = getAuth();
   const navigate = useNavigate();
-  const scrollPosition = useScrollPosition();
   const [dropdown, setDropdown] = useState(false);
-  const [cartDropdown, setCartDropdown] = useState(false);
   const [cart, setCart] = useState(null);
-  const [cartAmount, setCartAmount] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  let cartTotal;
-  let calcPrice;
 
   //Close daisy dropdown tab on click
   const handleClick = (path) => {
@@ -68,6 +60,7 @@ function Navbar({ checkOut, setCheckOut }) {
           <label
             tabIndex={0}
             className="btn btn-ghost normal-case text-accent text-lg"
+            onClick={() => navigate("/shop/mens/shirt")}
           >
             Mens
           </label>
@@ -76,25 +69,18 @@ function Navbar({ checkOut, setCheckOut }) {
             className="dropdown-content menu bg-base-200 rounded-box w-52 app font-bold text-lg"
           >
             <li>
-              <a onClick={() => navigate("/shop/mens/shirt")} className=" ">
-                Tops
-              </a>
+              <a onClick={() => navigate("/shop/mens/shirt")}>Tops</a>
             </li>
             <li>
-              <a onClick={() => navigate("/shop/mens/bottoms")} className=" ">
-                Bottoms
-              </a>
+              <a onClick={() => navigate("/shop/mens/bottoms")}>Bottoms</a>
             </li>
             <li>
-              <a onClick={() => navigate("/shop/mens/jacket")} className=" ">
+              <a onClick={() => navigate("/shop/mens/jacket")}>
                 Jackets & Coats
               </a>
             </li>
             <li>
-              <a
-                onClick={() => navigate("/shop/mens/dress-shirt")}
-                className=" "
-              >
+              <a onClick={() => navigate("/shop/mens/dress-shirt")}>
                 Button Down Shirts
               </a>
             </li>
@@ -104,6 +90,7 @@ function Navbar({ checkOut, setCheckOut }) {
           <label
             tabIndex={0}
             className="btn btn-ghost normal-case text-accent text-lg"
+            onClick={() => navigate("/shop/women/tops")}
           >
             Womens
           </label>
@@ -112,22 +99,16 @@ function Navbar({ checkOut, setCheckOut }) {
             className="dropdown-content menu  bg-base-200 rounded-box w-52 app font-bold text-lg"
           >
             <li>
-              <a onClick={() => navigate("/shop/women/tops")} className=" ">
-                Tops
-              </a>
+              <a onClick={() => navigate("/shop/women/tops")}>Tops</a>
             </li>
             <li>
-              <a onClick={() => navigate("/shop/women/bottoms")} className=" ">
-                Bottoms
-              </a>
+              <a onClick={() => navigate("/shop/women/bottoms")}>Bottoms</a>
             </li>
             <li>
-              <a onClick={() => navigate("/shop/women/dresses")} className=" ">
-                Dresses
-              </a>
+              <a onClick={() => navigate("/shop/women/dresses")}>Dresses</a>
             </li>
             <li>
-              <a onClick={() => navigate("/shop/women/jacket")} className=" ">
+              <a onClick={() => navigate("/shop/women/jacket")}>
                 Jackets & Coats
               </a>
             </li>

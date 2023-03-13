@@ -116,18 +116,22 @@ function ItemCard({ item, id, setCheckOut, quantity, setQuantity }) {
 
   //Add to wishlist
   const onclick = async () => {
-    if (wishlist === true) {
-      setWishlist(!wishlist);
-      deleteWishlist(id);
+    if (auth.currentUser) {
+      if (wishlist === true) {
+        setWishlist(!wishlist);
+        deleteWishlist(id);
+      } else {
+        setWishlist(!wishlist);
+        const dataCopy = {
+          ...item,
+          timestamp: serverTimestamp(),
+          userRef: auth.currentUser.uid,
+        };
+        await setDoc(doc(db, "wishlist", id), dataCopy);
+        console.log("added to wishlist");
+      }
     } else {
-      setWishlist(!wishlist);
-      const dataCopy = {
-        ...item,
-        timestamp: serverTimestamp(),
-        userRef: auth.currentUser.uid,
-      };
-      await setDoc(doc(db, "wishlist", id), dataCopy);
-      console.log("added to wishlist");
+      alert("Must be signed in to add to wishlist");
     }
   };
 

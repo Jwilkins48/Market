@@ -10,25 +10,16 @@ import { db } from "../../firebase.config";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-function Card({ clothing, id }) {
+function Card({ clothing, id, onDelete }) {
   const auth = getAuth();
   const navigate = useNavigate();
   const [wishlist, setWishlist] = useState(false);
 
-  const deleteWishlist = async (id) => {
-    if (window.confirm("Remove from wishlist?")) {
-      await deleteDoc(doc(db, "wishlist", id));
-      console.log("Deleted");
-    } else {
-      setWishlist(true);
-    }
-  };
-
   //Add to wishlist
-  const onclick = async () => {
+  const onClick = async () => {
     if (wishlist === true) {
       setWishlist(!wishlist);
-      deleteWishlist(id);
+      onDelete(id);
     } else {
       setWishlist(!wishlist);
       const dataCopy = {
@@ -60,7 +51,7 @@ function Card({ clothing, id }) {
     <div className="flex">
       <div className="card animate__animated animate__fadeIn mb-4  w-80 h-auto relative bg-[#f2f4f5] flex items-center m-auto mt-4 shadow-2xl">
         <button
-          onClick={onclick}
+          onClick={onClick}
           className="right-8 text-xl top-5 absolute text-blue-300"
         >
           {!wishlist ? (
